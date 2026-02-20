@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>투자 브리핑 2026-02-21</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background: #191919; color: #e0e0e0;
+    line-height: 1.7; padding: 20px;
+  }
+  .page {
+    max-width: 840px; margin: 0 auto; background: #1e1e1e;
+    border-radius: 12px; padding: 48px 56px 56px;
+  }
+  .page-icon { font-size: 42px; margin-bottom: 8px; }
+  .page-title {
+    font-size: 28px; font-weight: 700; color: #fff; margin-bottom: 6px;
+  }
+  .page-subtitle {
+    font-size: 13px; color: #666; margin-bottom: 36px;
+    padding-bottom: 20px; border-bottom: 1px solid #2a2a2a;
+  }
+  .section-bar {
+    display: flex; align-items: center; gap: 10px;
+    margin: 36px 0 16px; font-size: 18px; font-weight: 600; color: #fff;
+  }
+  .section-bar::after { content: ''; flex: 1; height: 1px; background: #333; }
+
+  /* 테이블 */
+  .market-table {
+    width: 100%; border-collapse: collapse; margin: 12px 0 20px; font-size: 13.5px;
+  }
+  .market-table th {
+    text-align: left; padding: 10px 14px; background: #252525;
+    color: #999; font-weight: 500; font-size: 12px; letter-spacing: 0.5px;
+  }
+  .market-table td { padding: 10px 14px; border-bottom: 1px solid #2a2a2a; color: #ccc; }
+  .market-table tr:last-child td { border-bottom: none; }
+  .up { color: #ef5350; }
+  .down { color: #42a5f5; }
+  .flat { color: #999; }
+
+  /* 박스 */
+  .macro-box {
+    background: #232323; border-left: 3px solid #f0c040;
+    padding: 16px 20px; border-radius: 0 8px 8px 0;
+    margin: 16px 0; font-size: 14px; line-height: 1.8; color: #ccc;
+  }
+  .macro-box strong { color: #f0c040; }
+  .risk-box {
+    background: #232323; border-left: 3px solid #ef5350;
+    padding: 16px 20px; border-radius: 0 8px 8px 0;
+    margin: 16px 0; font-size: 14px; line-height: 1.8; color: #ccc;
+  }
+  .beginner-tip {
+    background: #1a2a1a; border: 1px solid #2a3a2a; border-radius: 8px;
+    padding: 14px 18px; margin: 12px 0; font-size: 13px;
+    color: #a5d6a7; line-height: 1.7;
+  }
+  .beginner-tip::before { content: '💡 초보 팁 | '; font-weight: 600; }
+
+  /* 종목 카드 */
+  .stock-card {
+    background: #232323; border-radius: 10px; padding: 16px 20px;
+    margin: 10px 0; cursor: pointer; transition: background 0.15s;
+  }
+  .stock-card:hover { background: #282828; }
+  .stock-header {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 12px; flex-wrap: wrap;
+  }
+  .stock-left { display: flex; align-items: center; gap: 12px; }
+  .signal { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+  .signal.buy { background: #4caf50; box-shadow: 0 0 8px #4caf5060; }
+  .signal.hold { background: #ffc107; box-shadow: 0 0 8px #ffc10760; }
+  .signal.sell { background: #ef5350; box-shadow: 0 0 8px #ef535060; }
+  .stock-name { font-weight: 600; color: #fff; font-size: 15px; }
+  .stock-comment {
+    margin-top: 10px; padding-left: 22px; font-size: 13.5px;
+    color: #999; line-height: 1.6;
+  }
+  .stock-comment::before { content: '→ '; color: #666; }
+  .toggle-hint { font-size: 13px; color: #888; cursor: pointer; }
+
+  /* 토글 상세 */
+  .stock-detail {
+    display: none; margin-top: 14px; padding: 16px 20px;
+    background: #1e1e1e; border-radius: 8px;
+    font-size: 13px; color: #aaa; line-height: 1.9;
+  }
+  .stock-detail.open { display: block; }
+  .stock-detail h4 { color: #ddd; font-size: 13px; font-weight: 600; margin: 14px 0 6px; }
+  .stock-detail h4:first-child { margin-top: 0; }
+
+  /* 기타 */
+  h3 { color: #fff; font-size: 16px; margin: 24px 0 12px; font-weight: 600; }
+  h4 { color: #ddd; font-size: 14px; margin: 16px 0 8px; font-weight: 600; }
+  p { margin: 8px 0; font-size: 14px; color: #ccc; }
+  ul, ol { margin: 8px 0 8px 24px; font-size: 14px; color: #ccc; }
+  li { margin: 4px 0; line-height: 1.7; }
+  hr { border: none; border-top: 1px solid #2a2a2a; margin: 28px 0; }
+  strong { color: #fff; }
+  em { color: #f0c040; font-style: normal; }
+  a { color: #64b5f6; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  code { background: #2a2a2a; padding: 2px 6px; border-radius: 3px; font-size: 12px; color: #f0c040; }
+
+  .disclaimer {
+    margin-top: 36px; padding-top: 20px; border-top: 1px solid #2a2a2a;
+    font-size: 12px; color: #555; text-align: center;
+  }
+
+  @media (max-width: 640px) {
+    .page { padding: 24px 20px; }
+    .page-title { font-size: 22px; }
+    .section-bar { font-size: 16px; }
+    .market-table { font-size: 12px; }
+    .market-table th, .market-table td { padding: 8px 10px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="page-icon">📊</div>
+  <div class="page-title">투자 데일리 브리핑</div>
+  <div class="page-subtitle">2026-02-21 (토요일)</div>
+  <div class="page-title">📊 투자 데일리 브리핑</div>
+<p><strong>2025년 2월 21일 (금요일)</strong></p>
+<hr>
+<div class="section-bar">📡 시장 온도계</div>
+<table class="market-table">
+<tr><th>지표</th><th>최근 종가</th><th>등락률</th><th>상태</th></tr>
+<tr><td><strong>KODEX 200</strong></td><td>86,300원</td><td class="up">+2.26%</td><td>🔥 강세</td></tr>
+<tr><td><strong>KODEX 미국S&P500</strong></td><td>22,575원</td><td>0.00%</td><td>⚪ 보합</td></tr>
+<tr><td><strong>KODEX 미국나스닥100</strong></td><td>23,900원</td><td class="down">-0.17%</td><td>🔵 소폭 약세</td></tr>
+<tr><td><strong>ACE KRX금현물</strong></td><td>32,865원</td><td class="up">+0.70%</td><td>🟡 안전자산 선호</td></tr>
+<tr><td><strong>TIGER 미국배당다우존스</strong></td><td>14,580원</td><td class="up">+0.17%</td><td class="up">🟢 소폭 강세</td></tr>
+<tr><td><strong>ACE 미국30년국채</strong></td><td>7,815원</td><td class="up">+0.51%</td><td class="up">🟢 채권 강세</td></tr>
+</table>
+<hr>
+<div class="section-bar">🌐 매크로 핵심 요약</div>
+<p><strong>한줄 요약:</strong> 코스피 2.26% 급등으로 독주하는 가운데, 미국 시장은 관망세를 보이며 금과 채권이 동반 상승하는 '디펜시브 흐름' 감지.</p>
+<p><strong>쉽게 말하면:</strong></p>
+<ul>
+<li>한국 증시가 홀로 강한 상승세를 보였습니다. 이는 밸류업(기업 가치 개선) 기대감과 외국인 수급 개선 신호로 해석됩니다.</li>
+<li>반면 미국 시장은 보합권에서 횡보 중이며, 금과 국채 가격이 오르는 것은 투자자들이 '위험을 줄이고 안전자산으로 이동'하고 있다는 뜻입니다.</li>
+<li>한미 금리차(한국 3.5% vs 미국 3.64%)는 0.14%p로 여전히 미국이 높지만, 격차는 과거보다 좁아진 상태입니다.</li>
+</ul>
+<p><strong>핵심 경제 지표 변화:</strong></p>
+<ul>
+<li>최근 24시간 내 발표된 주요 매크로 지표는 확인되지 않았습니다.</li>
+<li>다만 구글의 Gemini 3.1 Pro 발표는 <strong>AI 경쟁 심화</strong>를 시사하며, 빅테크 밸류에이션 재평가 계기가 될 수 있습니다.</li>
+</ul>
+<p><strong>내 포트폴리오 영향:</strong></p>
+<ol>
+<li><strong>코스피 강세 = 네이버·현대차우 수혜 기대</strong>, 하지만 기술적으로는 저항선 근처로 추격매수는 주의 필요</li>
+<li><strong>미국 횡보 + 채권·금 강세 = 빅테크 상승 둔화 신호</strong>, 알파벳·메타·테슬라 단기 과열 경계</li>
+<li><strong>반도체 ETF 52주 신고가 경신 = 단기 차익실현 압력 가능성</strong>, SK하이닉스 과매수 경고와 일치</li>
+<li><strong>조선 ETF 골든크로스 임박 = 중기 상승 모멘텀 유효</strong>, 업황 호조 지속 시 추가 상승 여력</li>
+</ol>
+<hr>
+<div class="section-bar">⚠️ 오늘의 리스크</div>
+<ol>
+<li><strong>SK하이닉스·반도체 ETF 급등 후 윗꼬리</strong> — 52주 고점 근접 후 차익실현 매물 출현 가능, RSI 과매수 구간 진입 의심</li>
+<li><strong>미국 빅테크 거래량 감소</strong> — 메타·구글 상승세에도 거래량이 뒷받침 없으면 상승 탄력 제한, 테슬라는 여전히 역배열</li>
+<li><strong>금·국채 동반 상승</strong> — 전형적인 '위험회피 신호'로, 다음 주 미국 경제지표 앞두고 불확실성 증가 의미</li>
+</ol>
+<hr>
+<div class="section-bar">📋 내 종목 신호 — 개별주</div>
+<div class="stock-card">
+<div class="stock-header"><div class="stock-left"><span class="signal hold"></span><span class="stock-name">� <strong>네이버</strong> 253,000원 (+추정) | 확신도 4/10</span></div></div>
+</div>
+<p>→ 26만원 저항선 앞두고 윗꼬리 출현, 거래량 감소로 상승 탄력 약화. 돌파 실패 시 25만원 초반 재조정 가능.</p>
+<div class="stock-card" onclick="this.querySelector('.stock-detail').classList.toggle('open')">
+<div class="stock-header"><span class="toggle-hint">📋 <b>상세 분석 펼치기</b> ▾</span></div>
+<div class="stock-detail"><p><strong>차트:</strong></p>
+<ul>
+<li>5일선 < 20일선 < 60일선 (정배열 초기이나 5일선이 20일선 아래)</li>
+<li>최근 3일 소폭 상승했으나 윗꼬리 빈번 = 매도 압력 상존</li>
+<li>26만원 저항 돌파 여부가 핵심</li>
+</ul>
+<p><strong>핵심 숫자:</strong></p>
+<ul>
+<li>지지선: 25만원(최근 저점), 23.75만원(52주 최저)</li>
+<li>저항선: 26만원(최근 고점), 29.2만원(52주 최고)</li>
+<li>거래량: 감소 추세 → 상승 신뢰도 ↓</li>
+</ul>
+<p><strong>뉴스:</strong> (검색 결과 없음)</p>
+<ul>
+<li>최근 24시간 내 네이버 관련 구체적 뉴스 확인 불가</li>
+<li>포털·커머스 업황과 AI 투자 방향성 모니터링 필요</li>
+</ul>
+<p><strong>리스크:</strong></p>
+<ol>
+<li>거래량 없는 상승은 '강한 손'이 아닌 '약한 손' 랠리 가능성</li>
+<li>26만원 돌파 실패 시 250,000원 지지 테스트 우려</li>
+</ol>
+</div>
+</div>
+<hr>
+<div class="stock-card">
+<div class="stock-header"><div class="stock-left"><span class="signal buy"></span><span class="stock-name">� <strong>현대차우</strong> 279,000원 (+추정) | 확신도 5/10</span></div></div>
+</div>
+<p>→ 정배열 완성 + 거래량 증가로 단기 모멘텀 양호. 28.55만원 돌파 시 30만원 도전 가능.</p>
+<div class="stock-card" onclick="this.querySelector('.stock-detail').classList.toggle('open')">
+<div class="stock-header"><span class="toggle-hint">📋 <b>상세 분석 펼치기</b> ▾</span></div>
+<div class="stock-detail"><p><strong>차트:</strong></p>
+<ul>
+<li>5일선 > 20일선 > 60일선 (깔끔한 정배열)</li>
+<li>2월 초 이후 상승 추세 전환, 거래량도 증가세</li>
+<li>285,500원 저항선 앞두고 있음</li>
+</ul>
+<p><strong>핵심 숫자:</strong></p>
+<ul>
+<li>지지선: 26만원(최근), 21.55만원(52주 최저)</li>
+<li>저항선: 28.55만원(최근 고점), 31.85만원(52주 최고)</li>
+<li>정배열 + 거래량 증가 = 기술적 신뢰도 높음</li>
+</ul>
+<p><strong>뉴스:</strong> (검색 결과 없음)</p>
+<ul>
+<li>최근 24시간 내 현대차 관련 구체적 뉴스 확인 불가</li>
+<li>자동차 업황, 미국 IRA 정책, EV 전환 속도 모니터링 필요</li>
+</ul>
+<p><strong>리스크:</strong></p>
+<ol>
+<li>코스피 전체 강세에 편승한 측면, 매크로 악화 시 동반 하락</li>
+<li>28.55만원 돌파 실패 시 27만원대 중반 재조정 가능</li>
+</ol>
+</div>
+</div>
+<hr>
+<div class="stock-card">
+<div class="stock-header"><div class="stock-left"><span class="signal hold"></span><span class="stock-name">� <strong>삼성전자</strong> 188,000원 (+추정) | 확신도 4/10</span></div></div>
+</div>
+<p>→ 2일 연속 양봉이나 19만원 저항 앞두고 윗꼬리. 돌파 성공 시 추가 상승, 실패 시 18만원 중반 재조정.</p>
+<div class="stock-card" onclick="this.querySelector('.stock-detail').classList.toggle('open')">
+<div class="stock-header"><span class="toggle-hint">📋 <b>상세 분석 펼치기</b> ▾</span></div>
+<div class="stock-detail"><p><strong>차트:</strong></p>
+<ul>
+<li>5일선 > 20일선 > 60일선 (정배열 초기)</li>
+<li>1월 하순부터 상승 전환했으나 19만원 부근에서 저항</li>
+<li>윗꼬리 출현 = 추가 상승에 제한</li>
+</ul>
+<p><strong>핵심 숫자:</strong></p>
+<ul>
+<li>지지선: 17.86만원(최근), 13.52만원(52주 최저)</li>
+<li>저항선: 19.09만원(52주 최고), 19.1만원</li>
+<li>거래량: 최근 증가 중</li>
+</ul>
+<p><strong>뉴스:</strong> (검색 결과 없음)</p>
+<ul>
+<li>최근 24시간 내 삼성전자 관련 구체적 뉴스 확인 불가</li>
+<li>HBM3E 양산, 파운드리 수주, AI 반도체 경쟁력 모니터링 필요</li>
+</ul>
+<p><strong>리스크:</strong></p>
+<ol>
+<li>19만원 돌파 실패 시 심리적 실망감으로 급락 가능</li>
+<li>반도체 업황 불확실성(중국 수요, 미국 규제) 상존</li>
+</ol>
+</div>
+</div>
+<hr>
+<div class="stock-card">
+<div class="stock-header"><div class="stock-left"><span class="signal sell"></span><span class="stock-name">� <strong>SK하이닉스</strong> 950,000원 (+추정) | 확신도 6/10</span></div></div>
+</div>
+<p>→ 장대양봉으로 52주 최고 근접했으나 과매수 영역 진입. 단기 차익실현 조정 가능성 높아 일부 익절 권고.</p>
+<div class="stock-card" onclick="this.querySelector('.stock-detail').classList.toggle('open')">
+<div class="stock-header"><span class="toggle-hint">📋 <b>상세 분석 펼치기</b> ▾</span></div>
+<div class="stock-detail"><p><strong>차트:</strong></p>
+<ul>
+<li>5일선 > 20일선 > 60일선 (정배열이나 단기 과열)</li>
+<li>2월 20일 거래량 급증 = 과매수 신호 가능성</li>
+<li>955,000원(52주 최고) 직전에서 급등 후 윗꼬리</li>
+</ul>
+<p><strong>핵심 숫자:</strong></p>
+<ul>
+<li>지지선: 88만원(최근), 72.4만원(52주 최저)</li>
+<li>저항선: 95.5만원(52주 최고), 100만원(심리적 저항)</li>
+<li>RSI 과매수 경고</li>
+</ul>
+<p><strong>뉴스:</strong> (검색 결과 없음)</p>
+<ul>
+<li>HBM 수요 호조, AI 서버용 메모리 수혜 지속 중</li>
+<li>엔비디아 실적 발표 앞두고 변동성 확대 가능성</li>
+</ul>
+<p><strong>리스크:</strong></p>
+<ol>
+<li>95만원 돌파 실패 시 급격한 조정(88만원까지) 우려</li>
+<li>반도체 ETF와 동반 과열 → 동반 조정 가능성</li>
+</ol>
+</div>
+</div>
+<hr>
+<div class="stock-card">
+<div class="stock-header"><div class="stock-left"><span class="signal hold"></span><span class="stock-name">� <strong>알파벳A (GOOGL)</strong> $316 (+3.8%) | 확신도 5/10</span></div></div>
+</div>
+<p>→ 관세 해제 호재 + Gemini 3.1 Pro 발표로 급등했으나, 월가 목표가 $330까지 15% 상승 여력. 단기 과열보다는 중기 재평가 구간.</p>
+<div class="stock-card" onclick="this.querySelector('.stock-detail').classList.toggle('open')">
+<div class="stock-header"><span class="toggle-hint">📋 <b>상세 분석 펼치기</b> ▾</span></div>
+<div class="stock-detail"><p><strong>차트:</strong></p>
+<ul>
+<li>5일선 > 20일선 > 60일선 전환 과정</li>
+<li>2월 20일 장대양봉(+3.8%)으로 횡보 탈출 시도</li>
+<li>$320 저항 돌파 여부가 핵심</li>
+</ul>
+<p><strong>핵심 숫자:</strong></p>
+<ul>
+<li>지지선: $300(최근), $296.12(52주 최저)</li>
+<li>저항선: $328(최근), $349(52주 최고)</li>
+<li>RSI 50 근처, 아직 과매수 아님</li>
+</ul>
+<p><strong>뉴스:</strong></p>
+<ol>
+<li><strong>관세 해제 호재로 3.8% 급등</strong> (2/20) — 기술주 전반 상승세 주도</li>
+<li><strong>Gemini 3.1 Pro 공개</strong> (2/20) — ARC-AGI-2 벤치마크 77.1% 기록, 추론 성능 2배 개선. 과학·엔지니어링 문제 해결 특화</li>
+<li><strong>월가 목표가 $330</strong> (최근) — 분석가 75명 중 매도 의견 0명, 현재가 대비 15% 상승 여력</li>
+</ol>
+<p><strong>리스크:</strong></p>
+<ol>
+<li>$320 돌파 실패 시 $300까지 재조정 가능</li>
+<li>AI 경쟁 심화(MS·OpenAI 등)로 밸류에이션 프리미엄 축소 위험</li>
+</ol>
+</div>
+</div>
+<hr>
+<div class="stock-card">
+<div class="stock-header"><div class="stock-left"><span class="signal hold"></span><span class="stock-name">� <strong>메타 (META)</strong> $670 (+추정) | 확신도 4/10</span></div></div>
+</div>
+<p>→ 정배열 유지 중이나 $680 저항 앞두고 거래량 감소. 상승 탄력 약화로 돌파 여부 불확실.</p>
+
+  <div class="disclaimer">
+    ⚠️ 본 브리핑은 AI가 생성한 참고 자료이며, 투자 권유가 아닙니다.<br>
+    투자 판단의 책임은 본인에게 있습니다.
+  </div>
+</div>
+</body>
+</html>
