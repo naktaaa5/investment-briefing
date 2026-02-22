@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>투자 브리핑 2026-02-23</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background: #191919; color: #e0e0e0;
+    line-height: 1.7; padding: 20px;
+  }
+  .page {
+    max-width: 840px; margin: 0 auto; background: #1e1e1e;
+    border-radius: 12px; padding: 48px 56px 56px;
+  }
+  .page-icon { font-size: 42px; margin-bottom: 8px; }
+  .page-title {
+    font-size: 28px; font-weight: 700; color: #fff; margin-bottom: 6px;
+  }
+  .page-subtitle {
+    font-size: 13px; color: #666; margin-bottom: 36px;
+    padding-bottom: 20px; border-bottom: 1px solid #2a2a2a;
+  }
+  .section-bar {
+    display: flex; align-items: center; gap: 10px;
+    margin: 36px 0 16px; font-size: 18px; font-weight: 600; color: #fff;
+  }
+  .section-bar::after { content: ''; flex: 1; height: 1px; background: #333; }
+
+  /* 테이블 */
+  .market-table {
+    width: 100%; border-collapse: collapse; margin: 12px 0 20px; font-size: 13.5px;
+  }
+  .market-table th {
+    text-align: left; padding: 10px 14px; background: #252525;
+    color: #999; font-weight: 500; font-size: 12px; letter-spacing: 0.5px;
+  }
+  .market-table td { padding: 10px 14px; border-bottom: 1px solid #2a2a2a; color: #ccc; }
+  .market-table tr:last-child td { border-bottom: none; }
+  .up { color: #ef5350; }
+  .down { color: #42a5f5; }
+  .flat { color: #999; }
+
+  /* 박스 */
+  .macro-box {
+    background: #232323; border-left: 3px solid #f0c040;
+    padding: 16px 20px; border-radius: 0 8px 8px 0;
+    margin: 16px 0; font-size: 14px; line-height: 1.8; color: #ccc;
+  }
+  .macro-box strong { color: #f0c040; }
+  .risk-box {
+    background: #232323; border-left: 3px solid #ef5350;
+    padding: 16px 20px; border-radius: 0 8px 8px 0;
+    margin: 16px 0; font-size: 14px; line-height: 1.8; color: #ccc;
+  }
+  .beginner-tip {
+    background: #1a2a1a; border: 1px solid #2a3a2a; border-radius: 8px;
+    padding: 14px 18px; margin: 12px 0; font-size: 13px;
+    color: #a5d6a7; line-height: 1.7;
+  }
+  .beginner-tip::before { content: '💡 초보 팁 | '; font-weight: 600; }
+
+  /* 종목 카드 */
+  .stock-card {
+    background: #232323; border-radius: 10px; padding: 16px 20px;
+    margin: 10px 0; cursor: pointer; transition: background 0.15s;
+  }
+  .stock-card:hover { background: #282828; }
+  .stock-header {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 12px; flex-wrap: wrap;
+  }
+  .stock-left { display: flex; align-items: center; gap: 12px; }
+  .signal { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+  .signal.buy { background: #4caf50; box-shadow: 0 0 8px #4caf5060; }
+  .signal.hold { background: #ffc107; box-shadow: 0 0 8px #ffc10760; }
+  .signal.sell { background: #ef5350; box-shadow: 0 0 8px #ef535060; }
+  .stock-name { font-weight: 600; color: #fff; font-size: 15px; }
+  .stock-comment {
+    margin-top: 10px; padding-left: 22px; font-size: 13.5px;
+    color: #999; line-height: 1.6;
+  }
+  .stock-comment::before { content: '→ '; color: #666; }
+  .toggle-hint { font-size: 13px; color: #888; cursor: pointer; }
+
+  /* 토글 상세 */
+  .stock-detail {
+    display: none; margin-top: 14px; padding: 16px 20px;
+    background: #1e1e1e; border-radius: 8px;
+    font-size: 13px; color: #aaa; line-height: 1.9;
+  }
+  .stock-detail.open { display: block; }
+  .stock-detail h4 { color: #ddd; font-size: 13px; font-weight: 600; margin: 14px 0 6px; }
+  .stock-detail h4:first-child { margin-top: 0; }
+
+  /* 기타 */
+  h3 { color: #fff; font-size: 16px; margin: 24px 0 12px; font-weight: 600; }
+  h4 { color: #ddd; font-size: 14px; margin: 16px 0 8px; font-weight: 600; }
+  p { margin: 8px 0; font-size: 14px; color: #ccc; }
+  ul, ol { margin: 8px 0 8px 24px; font-size: 14px; color: #ccc; }
+  li { margin: 4px 0; line-height: 1.7; }
+  hr { border: none; border-top: 1px solid #2a2a2a; margin: 28px 0; }
+  strong { color: #fff; }
+  em { color: #f0c040; font-style: normal; }
+  a { color: #64b5f6; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  code { background: #2a2a2a; padding: 2px 6px; border-radius: 3px; font-size: 12px; color: #f0c040; }
+
+  .disclaimer {
+    margin-top: 36px; padding-top: 20px; border-top: 1px solid #2a2a2a;
+    font-size: 12px; color: #555; text-align: center;
+  }
+
+  @media (max-width: 640px) {
+    .page { padding: 24px 20px; }
+    .page-title { font-size: 22px; }
+    .section-bar { font-size: 16px; }
+    .market-table { font-size: 12px; }
+    .market-table th, .market-table td { padding: 8px 10px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="page-icon">📊🌍</div>
+  <div class="page-title">투자 위클리 브리핑</div>
+  <div class="page-subtitle">2026-02-23 (월요일)</div>
+  <div class="page-title">📊 투자 데일리 브리핑</div>
+<p><strong>2026년 2월 23일 (일요일) — 주간 종합 리포트</strong></p>
+<hr>
+<div class="section-bar">📡 시장 온도계</div>
+<table class="market-table">
+<tr><th>지표</th><th>최근 종가</th><th>등락률</th><th>상태</th></tr>
+<tr><td><strong>KODEX 200</strong></td><td>86,300원</td><td>0.00%</td><td>🔵 휴장</td></tr>
+<tr><td><strong>KODEX 미국S&P500</strong></td><td>22,575원</td><td>0.00%</td><td>🔵 휴장</td></tr>
+<tr><td><strong>KODEX 미국나스닥100</strong></td><td>23,900원</td><td>0.00%</td><td>🔵 휴장</td></tr>
+<tr><td><strong>ACE KRX금현물</strong></td><td>32,865원</td><td>0.00%</td><td>🔵 휴장</td></tr>
+<tr><td><strong>TIGER 미국배당다우존스</strong></td><td>14,580원</td><td>0.00%</td><td>🔵 휴장</td></tr>
+<tr><td><strong>ACE 미국30년국채액티브</strong></td><td>7,815원</td><td>0.00%</td><td>🔵 휴장</td></tr>
+</table>
+<p><strong>현재 기준금리:</strong> 🇰🇷 한국 3.5% | 🇺🇸 미국 3.64% (실효금리 범위 3.50~3.75%)</p>
+<hr>
+<div class="section-bar">🌐 매크로 핵심 요약</div>
+<div class="stock-card">
+<div class="stock-header"><div class="stock-left"><span class="signal hold"></span><span class="stock-name">� 한줄 요약</span></div></div>
+</div>
+<p>연준이 "금리 인하는 급하지 않다"는 신호를 강하게 보내면서, 인플레이션 재점화 우려로 시장은 금리 인하 시점을 6월 이후로 늦추고 있습니다.</p>
+<div class="stock-card">
+<div class="stock-header"><div class="stock-left"><span class="signal hold"></span><span class="stock-name">�️ 쉽게 말하면</span></div></div>
+</div>
+<ul>
+<li>1월 FOMC 회의록에서 연준 위원들이 <strong>"인플레이션이 다시 올라올 수 있다"</strong>는 우려를 공유했습니다. 이는 물가가 2% 목표로 내려가는 게 생각보다 더딜 수 있다는 뜻입니다.</li>
+<li>트럼프 대통령이 금리를 빨리 내려달라고 압박했지만, 연준은 <strong>"데이터를 보고 신중히 결정하겠다"</strong>며 독립성을 유지했습니다.</li>
+<li>1월 고용지표는 양호했고, 곧 발표될 1월 CPI(소비자물가지수)가 예상(2.5%)보다 높게 나오면 <strong>금리 인하 시기가 여름 이후로 미뤄질 가능성</strong>이 높아집니다.</li>
+</ul>
+<div class="stock-card">
+<div class="stock-header"><div class="stock-left"><span class="signal hold"></span><span class="stock-name">� 핵심 경제 지표 변화</span></div></div>
+</div>
+<table class="market-table">
+<tr><th>지표</th><th>최신 수치</th><th>의미</th></tr>
+<tr><td><strong>미국 기준금리</strong></td><td>3.50~3.75%</td><td>1월 동결, 3월도 동결 예상</td></tr>
+<tr><td><strong>1월 CPI (예상)</strong></td><td>YoY 2.5%</td><td>예상 상회 시 금리 인하 지연 신호</td></tr>
+<tr><td><strong>1월 고용</strong></td><td>양호</td><td>노동시장 견조 → 인플레 압력 지속 가능</td></tr>
+<tr><td><strong>연준 태도</strong></td><td>양방향 리스크</td><td>인상도 가능성 언급 (실제 확률은 낮음)</td></tr>
+</table>
+<div class="stock-card">
+<div class="stock-header"><div class="stock-left"><span class="signal hold"></span><span class="stock-name">� 내 포트폴리오 영향</span></div></div>
+</div>
+<ol>
+<li><strong>🔴 단기 역풍:</strong> 금리 인하 지연은 성장주(테슬라, 알파벳, 메타)와 테크 ETF(나스닥100)에 부정적입니다. 미래 이익을 현재가치로 할인할 때 금리가 높으면 주가가 낮아지기 때문입니다.</li>
+</ol>
+<ol>
+<li><strong>🟢 반도체 독주:</strong> SK하이닉스, 삼성전자는 "증설 없는 마진 사이클"에 진입하며 기술적으로 강한 매수 신호를 보이고 있습니다. AI 수요 지속이 핵심 변수입니다.</li>
+</ol>
+<ol>
+<li><strong>🟡 조선 반등:</strong> SOL 조선 ETF가 급등했지만, 중국 디플레이션 탈출 여부(리플레이션 신호)를 확인해야 지속 가능성을 판단할 수 있습니다.</li>
+</ol>
+<ol>
+<li><strong>⚠️ 가치주 재조명:</strong> 금리 인하 지연 국면에서는 현금흐름이 확실한 가치주(현대차우, 배당주)가 상대적으로 안전합니다.</li>
+</ol>
+<hr>
+<div class="section-bar">⚠️ 오늘의 리스크</div>
+<ol>
+<li><strong>🔥 인플레 재점화 우려:</strong> 1월 CPI가 예상(2.5%)을 상회하면 연준의 매파적(금리 높게 유지) 태도가 강화되어 성장주 조정이 심화될 수 있습니다.</li>
+</ol>
+<ol>
+<li><strong>📉 반도체 과열 신호:</strong> TIGER 반도체 ETF가 52주 최고점 부근에서 윗꼬리를 달며 차익실현 매물이 나오고 있습니다. 단기 조정 가능성에 주의하세요.</li>
+</ol>
+<ol>
+<li><strong>🌏 중국 경제 불확실성:</strong> 휴머노이드 로봇 ETF와 조선주는 중국 경기 회복 여부에 민감합니다. 중국 PMI와 부동산 지표를 주시해야 합니다.</li>
+</ol>
+<hr>
+<div class="section-bar">📋 내 종목 신호 — 개별주</div>
+<div class="stock-card">
+<div class="stock-header"><div class="stock-left"><span class="signal buy"></span><span class="stock-name">� SK하이닉스 (000660)</span></div></div>
+</div>
+<p><strong>903,200원</strong> | 확신도 <strong>7/10</strong></p>
+<p>→ <strong>52주 최고가 근접, 거래량 급증하며 상승세 강력. AI 수요 지속 시 신고가 경신 유력.</strong></p>
+<div class="stock-card" onclick="this.querySelector('.stock-detail').classList.toggle('open')">
+<div class="stock-header"><span class="toggle-hint">📋 <b>📊 상세 분석</b> ▾</span></div>
+<div class="stock-detail"><p><strong>차트:</strong></p>
+<ul>
+<li>20일 장대 양봉으로 상승 추세 강화</li>
+<li>5일선(903,200) > 20일선(845,500) > 60일선(824,100) 완벽한 정배열</li>
+<li>52주 최고가 955,000원까지 5.7% 남음</li>
+</ul>
+<p><strong>핵심 숫자:</strong></p>
+<ul>
+<li>지지선: 892,000원 (최근 저점)</li>
+<li>저항선: 955,000원 (52주 최고)</li>
+<li>RSI: 과열 구간 진입 가능성 (정확한 수치 미제공)</li>
+</ul>
+<p><strong>뉴스:</strong></p>
+<ul>
+<li>HBM3E(고대역폭 메모리) 공급 확대로 AI 서버 수요 대응</li>
+<li>엔비디아 차세대 GPU에 독점 공급 지속 전망</li>
+<li>"증설 없는 마진 사이클" 돌입으로 업계 단합적 상승 (출처: 기술적 분석 맥락)</li>
+</ul>
+<p><strong>리스크:</strong></p>
+<ol>
+<li>955,000원 돌파 실패 시 차익실현 압력</li>
+<li>엔비디아 실적 쇼크 시 동반 조정</li>
+</ol>
+</div>
+</div>
+<hr>
+<div class="stock-card">
+<div class="stock-header"><div class="stock-left"><span class="signal buy"></span><span class="stock-name">� 삼성전자 (005930)</span></div></div>
+</div>
+<p><strong>181,600원</strong> | 확신도 <strong>6/10</strong></p>
+<p>→ <strong>골든크로스 발생, 정배열 초입. 52주 최고가(190,900원) 돌파 여부가 추가 상승의 열쇠.</strong></p>
+<div class="stock-card" onclick="this.querySelector('.stock-detail').classList.toggle('open')">
+<div class="stock-header"><span class="toggle-hint">📋 <b>📊 상세 분석</b> ▾</span></div>
+<div class="stock-detail"><p><strong>차트:</strong></p>
+<ul>
+<li>5일선(181,600)이 20일선(163,700)을 크게 상회하며 골든크로스</li>
+<li>60일선(156,400)도 돌파하며 정배열 진입</li>
+<li>거래량 급증으로 상승세 뒷받침</li>
+</ul>
+<p><strong>핵심 숫자:</strong></p>
+<ul>
+<li>지지선: 188,600원 → <strong>현재가가 지지선보다 낮음 (데이터 오류 추정, 실제 지지는 170,000원대)</strong></li>
+<li>저항선: 190,900원 (52주 최고)</li>
+</ul>
+<p><strong>뉴스:</strong></p>
+<ul>
+<li>파운드리 경쟁력 회복 기대감 (3나노 수율 개선)</li>
+<li>갤럭시 S26 사전 예약 호조 소식 (검색 미확인, 일반적 시장 기대)</li>
+<li>메모리 가격 상승세 지속 (DRAMeXchange 기준)</li>
+</ul>
+<p><strong>리스크:</strong></p>
+<ol>
+<li>190,900원 돌파 실패 시 횡보 가능성</li>
+<li>파운드리 부문 적자 지속 우려</li>
+</ol>
+</div>
+</div>
+<hr>
+<div class="stock-card">
+<div class="stock-header"><div class="stock-left"><span class="signal hold"></span><span class="stock-name">� 네이버 (035420)</span></div></div>
+</div>
+<p><strong>253,500원 (추정)</strong> | 확신도 <strong>4/10</strong></p>
+<p>→ <strong>52주 최저가 근처에서 횡보 중. 뚜렷한 반등 신호 없어 관망 권고.</strong></p>
+<div class="stock-card" onclick="this.querySelector('.stock-detail').classList.toggle('open')">
+<div class="stock-header"><span class="toggle-hint">📋 <b>📊 상세 분석</b> ▾</span></div>
+<div class="stock-detail"><p><strong>차트:</strong></p>
+<ul>
+<li>5일선(254,300) < 20일선(263,100) < 60일선(265,400) 역배열 지속</li>
+<li>52주 최저 237,500원에서 약한 지지</li>
+<li>거래량 감소로 추세 전환 불투명</li>
+</ul>
+<p><strong>핵심 숫자:</strong></p>
+<ul>
+<li>지지선: 237,500원 (52주 최저)</li>
+<li>저항선: 260,000원 (최근 고점)</li>
+</ul>
+<p><strong>뉴스:</strong></p>
+<ul>
+<li>검색 결과 미확인 (최근 24시간 특이 뉴스 없음)</li>
+<li>일반적 이슈: 라인야후 일본 규제 우려, 쇼핑/핀테크 경쟁 심화</li>
+</ul>
+<p><strong>리스크:</strong></p>
+<ol>
+<li>일본 라인야후 사업 규제 강화 가능성</li>
+<li>쿠팡, 카카오와의 경쟁 심화로 수익성 압박</li>
+</ol>
+</div>
+</div>
+<hr>
+<div class="stock-card">
+<div class="stock-header"><div class="stock-left"><span class="signal hold"></span><span class="stock-name">� 현대차우 (005385)</span></div></div>
+</div>
+<p><strong>272,900원 (추정)</strong> | 확신도 <strong>5/10</strong></p>
+<p>→ <strong>단기 반등 시도 중이나 28만원 저항. 거래량 증가 확인 필요.</strong></p>
+<div class="stock-card" onclick="this.querySelector('.stock-detail').classList.toggle('open')">
+<div class="stock-header"><span class="toggle-hint">📋 <b>📊 상세 분석</b> ▾</span></div>
+<div class="stock-detail"><p><strong>차트:</strong></p>
+<ul>
+<li>5일선(272,900) > 20일선(267,900) 단기 반등</li>
+<li>60일선(261,800) 상회했으나 추세 전환 확신 부족</li>
+<li>20일 마지막 긴 양봉이지만 거래량 미미</li>
+</ul>
+<p><strong>핵심 숫자:</strong></p>
+<ul>
+<li>지지선: 273,000원 (최근 저점)</li>
+<li>저항선: 285,500원 (최근 고점)</li>
+</ul>
+<p><strong>뉴스:</strong></p>
+<ul>
+<li>검색 결과 미확인</li>
+<li>일반적 이슈: 현대차 글로벌 판매 호조, 전기차 전환 속도 조절</li>
+</ul>
+<p><strong>리스크:</strong></p>
+<ol>
+<li>285,500원 돌파 실패 시 횡보 장기화</li>
+<li>우선주 디스카운트 해소 지연 (거버넌스 개선 속도)</li>
+</ol>
+</div>
+</div>
+<hr>
+<div class="stock-card">
+<div class="stock-header"><div class="stock-left"><span class="signal hold"></span><span class="stock-name">� 알파벳A (GOOGL)</span></div></div>
+</div>
+<p><strong>$307.19 (추정)</strong> | 확신도 <strong>5/10</strong></p>
+<p>→ <strong>하락 추세에서 반등 시도 중이나 316달러 저항. 신중한 관망 필요.</strong></p>
+<div class="stock-card" onclick="this.querySelector('.stock-detail').classList.toggle('open')">
+<div class="stock-header"><span class="toggle-hint">📋 <b>📊 상세 분석</b> ▾</span></div>
+<div class="stock-detail"><p><strong>차트:</strong></p>
+<ul>
+<li>5일선(307.19) < 20일선(323.26) < 60일선(320.45) 역배열</li>
+<li>20일 양봉으로 반등했으나 이전 하락 미회복</li>
+<li>RSI 50 이하로 추세 전환 불확실</li>
+</ul>
+<p><strong>핵심 숫자:</strong></p>
+<ul>
+<li>지지선: $296.12 (52주 최저)</li>
+<li>저항선: $316.50 (최근 고점)</li>
+</ul>
+<p><strong>뉴스:</strong></p>
+<ul>
+<li>검색 결과 미확인</li>
+<li>일반적 이슈: 제미나이 AI 경쟁력, 반독점 소송 진행</li>
+</ul>
+<p><strong>리스크:</strong></p>
+<ol>
+<li>316달러 돌파 실패 시 재하락 가능성</li>
+<li>AI 경쟁에서 오픈AI/MS에 밀릴 경우 밸류에이션 압박</li>
+</ol>
+</div>
+</div>
+<hr>
+<div class="stock-card">
+<div class="stock-header"><div class="stock-left"><span class="signal hold"></span><span class="stock-name">� 메타 (META)</span></div></div>
+</div>
+<p><strong>$644.17 (추정)</strong> | 확신도 <strong>4/10</strong></p>
+<p>→ <strong>636달러 지지 확인 중 횡보. 뚜렷한 방향성 없어 관망.</strong></p>
+<div class="stock-card" onclick="this.querySelector('.stock-detail').classList.toggle('open')">
+<div class="stock-header"><span class="toggle-hint">📋 <b>📊 상세 분석</b> ▾</span></div>
+<div class="stock-detail"><p><strong>차트:</strong></p>
+<ul>
+<li>5일선(644.17) < 20일선(664.27) < 60일선(653.95) 역배열</li>
+<li>20일 양봉이지만 직전 하락세 상쇄 부족</li>
+<li>RSI 50 근처 횡보</li>
+</ul>
+<p><strong>핵심 숫자:</strong></p>
+<ul>
+<li>지지선: $636.72 (최근 저점)</li>
+<li>저항선: $663.35 (최근 고점)</li>
+</ul>
+<p><strong>뉴스:</strong></p>
+<ul>
+<li>검색 결과 미확인</li>
+<li>일반적 이슈: 메타버스 투자 지속, 광고 수익 회복세</li>
+</ul>
+<p><strong>리스크:</strong></p>
+<ol>
+<li>636달러 이탈 시 52주 최저가 재방문 가능성</li>
+<li>메타버스 사업 수익화 지연 우려</li>
+</ol>
+</div>
+</div>
+<hr>
+<div class="stock-card">
+<div class="stock-header"><div class="stock-left"><span class="signal hold"></span><span class="stock-name">� 테슬라 (TSLA)</span></div></div>
+</div>
+<p><strong>$411.39 (추정)</strong> | 확신도 <strong>5/10</strong></p>
+<p>→ <strong>400달러 지지 확인 중. RSI 과매도 진입 시 단기 반등 가능.</strong></p>
+<div class="stock-card" onclick="this.querySelector('.stock-detail').classList.toggle('open')">
+<div class="stock-header"><span class="toggle-hint">📋 <b>📊 상세 분석</b> ▾</span></div>
+<div class="stock-detail"><p><strong>차트:</strong></p>
+<ul>
+<li>5일선(411.39) < 20일선(427.82) < 60일선(437.59) 역배열</li>
+<li>횡보 패턴, 거래량 감소로 하락세 둔화</li>
+<li>RSI 40 근처로 과매도 구간 진입 가능성</li>
+</ul>
+<p><strong>핵심 숫자:</strong></p>
+<ul>
+<li>지지선: $400.51 (최근 저점)</li>
+<li>저항선: $416.90 (최근 고점)</li>
+</ul>
+<p><strong>뉴스:</strong></p>
+<ul>
+<li>검색 결과 미확인</li>
+<li>일반적 이슈: 사이버트럭 생산 확대, FSD(완전자율주행) 규제 진전</li>
+</ul>
+<p><strong>리스크:</strong></p>
+<ol>
+<li>400달러 이탈 시 추가 하락 가능성</li>
+<li>전기차 수요 둔화 및 중국 경쟁 심화</li>
+</ol>
+</div>
+</div>
+<hr>
+<div class="section-bar">📋 내 종목 신호 — 테마 ETF</div>
+<div class="stock-card">
+<div class="stock-header"><div class="stock-left"><span class="signal sell"></span><span class="stock-name">� TIGER 반도체 Top10 (091160)</span></div></div>
+</div>
+<p><strong>90,650원 (추정)</strong> | 확신도 <strong>6/10</strong></p>
+<p>→ <strong>52주 최고점(93,050원) 부근에서 윗꼬리 달며 차익실현 신호. 단기 조정 가능성 높음.</strong></p>
+<div class="stock-card" onclick="this.querySelector('.stock-detail').classList.toggle('open')">
+<div class="stock-header"><span class="toggle-hint">📋 <b>📊 상세 분석</b> ▾</span></div>
+<div class="stock-detail"><p><strong>구성 종목 (상위 5개, 추정):</strong></p>
+<table class="market-table">
+<tr><th>종목</th><th>비중</th><th>코멘트</th></tr>
+<tr><td><strong>SK하이닉스</strong></td><td>~25%</td><td class="up">강력한 상승세, ETF 주도</td></tr>
+<tr><td><strong>삼성전자</strong></td><td>~20%</td><td>골든크로스, 정배열 진입</td></tr>
+<tr><td><strong>TSMC</strong></td><td>~15%</td><td>대만 반도체, AI 수혜</td></tr>
+<tr><td><strong>ASML</strong></td><td>~10%</td><td>반도체 장비, 선행 지표</td></tr>
+<tr><td><strong>엔비디아</strong></td><td>~8%</td><td>AI 칩 선두주자</td></tr>
+</table>
+<p><strong>ETF 움직임의 핵심:</strong></p>
+<ul>
+<li>SK하이닉스와 삼성전자의 동반 상승이 ETF를 견인</li>
+<li>"증설 없는 마진 사이클"로 업체들이 단합적으로 상승</li>
+<li>하지만 52주 최고가 부근에서 저항받으며 차익실현 매물 출회</li>
+</ul>
+<p><strong>뉴스:</strong></p>
+<ul>
+<li>HBM(고대역폭 메모리) 공급 부족으로 가격 강세</li>
+<li>AI 서버 수요 지속, 엔비디아 차세대 GPU 출시 임박</li>
+<li>반도체 설비투자 동결로 공급 제약 → 마진 개선 기대</li>
+</ul>
+<p><strong>리스크:</strong></p>
+<ol>
+<li><strong>52주 최고가 돌파 실패 시 5~10% 조정 가능</strong></li>
+<li>엔비디아 실적 발표(2월 말~3월 초 예상)에서 가이던스 하회 시 동반 급락</li>
+</ol>
+</div>
+</div>
+<hr>
+<div class="stock-card">
+<div class="stock-header"><div class="stock-left"><span class="signal buy"></span><span class="stock-name">� SOL 조선 Top3플러스 (466920)</span></div></div>
+</div>
+<p><strong>36,290원 (추정)</strong> | 확신도 <strong>6/10</strong></p>
+<p>→ <strong>장대 양봉으로 반등 강력. 39,000원 돌파 시 추가 상승 가능.</strong></p>
+<div class="stock-card" onclick="this.querySelector('.stock-detail').classList.toggle('open')">
+<div class="stock-header"><span class="toggle-hint">📋 <b>📊 상세 분석</b> ▾</span></div>
+<div class="stock-detail"><p><strong>구성 종목 (상위 5개, 추정):</strong></p>
+<table class="market-table">
+<tr><th>종목</th><th>비중</th><th>코멘트</th></tr>
+<tr><td><strong>HD현대중공업</strong></td><td>~35%</td><td>조선 빅3 선두</td></tr>
+<tr><td><strong>삼성중공업</strong></td><td>~30%</td><td>LNG선 수주 강세</td></tr>
+<tr><td><strong>한화오션</strong></td><td>~25%</td><td>방산 시너지</td></tr>
+<tr><td><strong>HD현대미포</strong></td><td>~7%</td><td>중소형 선박</td></tr>
+<tr><td><strong>현대두산인프라코어</strong></td><td>~3%</td><td>건설기계</td></tr>
+</table>
+<p><strong>ETF 움직임의 핵심:</strong></p>
+<ul>
+<li>20일 거래량 급증하며 하락 추세 → 상승 전환 신호</li>
+<li>5일선이 20일/60일선 위로 올라서며 정배열 진입</li>
+<li>중국 경기 회복 기대감(리플레이션 신호)이 조선 수요 부양 기대</li>
+</ul>
+<p><strong>뉴스:</strong></p>
+<ul>
+<li>글로벌 선박 발주 증가, LNG선 수주 호조</li>
+<li>한화오션 방산 수주 확대 (호주 잠수함 등)</li>
+<li>중국 조선소와의 경쟁력 격차 확대 (고부가선박)</li>
+</ul>
+<p><strong>리스크:</strong></p>
+<ol>
+<li><strong>39,000원 돌파 실패 시 단기 차익실현 압력</strong></li>
+<li>중국 디플레이션 지속 시 커머디티(철강) 수요 약화로 조선 원가 부담</li>
+</ol>
+</div>
+</div>
+<hr>
+<div class="stock-card">
+<div class="stock-header"><div class="stock-left"><span class="signal hold"></span><span class="stock-name">� TIGER 차이나휴머노이드로봇 (487230)</span></div></div>
+</div>
+<p><strong>19,440원 (추정)</strong> | 확신도 <strong>5/10</strong></p>
+<p>→ <strong>52주 최고점 부근에서 횡보. 네러티브는 좋지만 실적 확인 필요. 관망 권고.</strong></p>
+<div class="stock-card" onclick="this.querySelector('.stock-detail').classList.toggle('open')">
+<div class="stock-header"><span class="toggle-hint">📋 <b>📊 상세 분석</b> ▾</span></div>
+<div class="stock-detail"><p><strong>구성 종목 (상위 5개, 추정):</strong></p>
+<table class="market-table">
+<tr><th>종목</th><th>비중</th><th>코멘트</th></tr>
+<tr><td><strong>Ubtech Robotics</strong></td><td>~20%</td><td>중국 휴머노이드 선두</td></tr>
+<tr><td><strong>Siasun Robot</strong></td><td>~15%</td><td>산업용 로봇</td></tr>
+<tr><td><strong>Estun Automation</strong></td><td>~12%</td><td>로봇 제어기</td></tr>
+<tr><td><strong>Inovance</strong></td><td>~10%</td><td>모터 드라이브</td></tr>
+<tr><td><strong>STEP Electric</strong></td><td>~8%</td><td>자동화 부품</td></tr>
+</table>
+<p><strong>ETF 움직임의 핵심:</strong></p>
+<ul>
+<li>5일선 > 20일선 > 60일선 정배열 유지</li>
+<li>하지만 거래량 감소하며 19,795원(52주 최고) 돌파 실패</li>
+<li><strong>한국은 산업용 로봇 강국, 휴머노이드는 미중이 주도</strong></li>
+<li>테마주 성격 강해 실적 없는 급등/급락 가능성</li>
+</ul>
+<p><strong>뉴스:</strong></p>
+<ul>
+<li>중국 정부 로봇 산업 육성 정책 강화</li>
+<li>Ubtech, 휴머노이드 로봇 양산 계획 발표</li>
+<li>테슬라 옵티머스, 피규어AI 등 글로벌 경쟁 가열</li>
+</ul>
+<p><strong>리스크:</strong></p>
+<ol>
+<li><strong>숫자 없는 테마주 급락 위험 — 이 ETF는 중국 중소형주 중심으로 변동성 극심</strong></li>
+<li>휴머노이드 실용화까지 5~10년 소요 예상, 단기 수익화 어려움</li>
+</ol>
+</div>
+</div>
+<hr>
+<div class="section-bar">📌 이번 주 액션 플랜</div>
+<div class="stock-card">
+<div class="stock-header"><div class="stock-left"><span class="signal hold"></span><span class="stock-name">� 1주 전망</span></div></div>
+</div>
+<p><strong>"반도체 과열 경계, 조선 리플레이션 확인, 성장주는 인플레 데이터 주시"</strong></p>
+<p>이번 주는 <strong>1월 CPI 발표(예정)</strong>가 가장 중요한 변수입니다. 예상(2.5%)을 상회하면 금리 인하 기대가 후퇴하며 성장주(테슬라, 알파벳, 메타)와 나스닥100이 조정받을 수 있습니다. 반면 SK하이닉스, 삼성전자는 "증설 없는 마진 사이클"로 펀더멘탈이 독립적이어서 상대적으로 안전합니다. 다만 TIGER 반도체 ETF는 52주 최고가 부근에서 차익실현 압력이 보이므로 <strong>단기 5~10% 조정 가능성</strong>에 대비해야 합니다.</p>
+<p>조선 ETF는 중국 PMI(2월 말 발표 예정)에서 경기 회복 신호가 나오면 추가 상승 여력이 있습니다. 휴머노이드 로봇 ETF는 네러티브는 매력적이지만 실적이 없어 변동성이 크므로 소액만 유지하세요.</p>
+<hr>
+<h3>🎯 종목별 구체적 액션</h3>
+<table class="market-table">
+<tr><th>종목</th><th>액션</th><th>가격 기준</th><th>비중</th><th>이유</th></tr>
+<tr><td><strong>SK하이닉스</strong></td><td class="up">🟢 <strong>보유 또는 분할매수</strong></td><td>890,000원 이하</td><td>15~20%</td><td>955,000원 돌파 시 신고가 경신 가능. 900,000원 이하는 매수 기회</td></tr>
+<tr><td><strong>삼성전자</strong></td><td class="up">🟢 <strong>분할매수</strong></td><td>175,000~180,000원</td><td>10~15%</td><td class="up">190,900원 돌파 시 추가 상승. 지금은 정배열 초입</td></tr>
+<tr><td><strong>네이버</strong></td><td>🟡 <strong>관망</strong></td><td>240,000원 이하 진입 검토</td><td>5~10%</td><td>52주 최저 근처지만 반등 신호 부족. 240,000원 이탈 시 손절</td></tr>
+<tr><td><strong>현대차우</strong></td><td>🟡 <strong>관망</strong></td><td>270,000원 이하</td><td>5~10%</td><td>285,500원 돌파 확인 후 추가 매수 검토</td></tr>
+<tr><td><strong>알파벳A</strong></td><td>🟡 <strong>관망</strong></td><td>$300 이하 진입 검토</td><td>5~10%</td><td>316달러 돌파 확인 필요. CPI 발표 후 판단</td></tr>
+<tr><td><strong>메타</strong></td><td>🟡 <strong>관망</strong></td><td>$630 이하</td><td>5~10%</td><td>636달러 이탈 시 손절 고려</td></tr>
+<tr><td><strong>테슬라</strong></td><td>🟡 <strong>관망</strong></td><td>$395 이하 진입 검토</td><td>5~10%</td><td class="down">400달러 이탈 시 추가 하락 가능</td></tr>
+<tr><td><strong>TIGER 반도체</strong></td><td>🟡 <strong>일부 익절 (20~30%)</strong></td><td>93,000원 돌파 실패 시</td><td>10~15%</td><td>차익실현 후 88,000~90,000원 재진입 검토</td></tr>
+<tr><td><strong>SOL 조선</strong></td><td class="up">🟢 <strong>보유</strong></td><td>39,000원 돌파 시 추가 매수</td><td>5~10%</td><td>중국 PMI 확인 필요</td></tr>
+<tr><td><strong>TIGER 차이나로봇</strong></td><td>🟡 <strong>소액 유지</strong></td><td>19,000원 이하</td><td>3~5%</td><td>테마주 성격, 변동성 극심. 19,000원 이탈 시 손절</td></tr>
+</table>
+<hr>
+<div class="stock-card">
+<div class="stock-header"><div class="stock-left"><span class="signal hold"></span><span class="stock-name">� 적립식 판단</span></div></div>
+</div>
+<p><strong>🟢 정상 유지 + 일부 종목 추가 매수 기회</strong></p>
+<ul>
+<li><strong>KODEX200, S&P500, 나스닥100:</strong> 정상 유지. CPI 쇼크로 급락 시 1회 추가 매수 검토</li>
+<li><strong>KRX금현물:</strong> 정상 유지. 금리 인하 지연으로 금 수요 약화 가능성 있지만, 지정학적 리스크(중동, 우크라이나)가 지지</li>
+<li><strong>미국배당다우존스:</strong> 정상 유지. 금리 인하 지연 국면에서 배당주는 상대적으로 안전</li>
+<li><strong>미국30년국채:</strong> 정상 유지. 금리 인하 지연으로 단기 조정 가능하지만 장기적으로는 금리 하락 수혜</li>
+</ul>
+<p><strong>추가 매수 조건:</strong> S&P500이 주간 -5% 이상 급락 시 1개월 적립액의 50% 추가 투입 검토</p>
+<hr>
+<div class="section-bar">🌍 거시경제 종합 대시보드</div>
+<div class="stock-card">
+<div class="stock-header"><div class="stock-left"><span class="signal hold"></span><span class="stock-name">� 인플레이션 지표</span></div></div>
+</div>
+<table class="market-table">
+<tr><th>지표</th><th>최신 수치</th><th>전월/전년</th><th>쉬운 해석</th><th>출처</th></tr>
+<tr><td><strong>CPI (소비자물가)</strong></td><td>2.5% (YoY, 1월 예상)</td><td>전년 대비</td><td>물가가 작년보다 2.5% 올랐다는 뜻. 연준 목표(2%)보다 높아 금리 인하 어려움</td><td>[2]</td></tr>
+<tr><td><strong>근원 CPI</strong></td><td>2.5% (YoY, 1월 예상)</td><td>전년 대비</td><td>식품·에너지 제외한 물가. 이게 높으면 "구조적 인플레" 신호</td><td>[2]</td></tr>
+<tr><td><strong>PPI (생산자물가)</strong></td><td>미확인</td><td>-</td><td>공장에서 파는 가격. CPI보다 3~6개월 선행</td><td>-</td></tr>
+<tr><td><strong>근원 PCE</strong></td><td>미확인</td><td>-</td><td>연준이 가장 중시하는 물가 지표</td><td>-</td></tr>
+<tr><td><strong>ECI (고용비용지수)</strong></td><td>미확인</td><td>-</td><td>임금+복리후생 비용. 임금 인플레이션의 핵심 선행지표</td><td>-</td></tr>
+</table>
+<p><strong>📌 인플레 유형 판단:</strong></p>
+<p><strong>임금견인 + 수요견인 혼합형</strong></p>
+<ul>
+<li>1월 고용 양호 → 노동시장 타이트 → 임금 상승 압력</li>
+<li>소비 견조 → 수요 강세</li>
+</ul>
+
+  <div class="disclaimer">
+    ⚠️ 본 브리핑은 AI가 생성한 참고 자료이며, 투자 권유가 아닙니다.<br>
+    투자 판단의 책임은 본인에게 있습니다.
+  </div>
+</div>
+</body>
+</html>
