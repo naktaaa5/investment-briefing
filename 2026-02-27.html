@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>투자 브리핑 2026-02-27</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background: #191919; color: #e0e0e0;
+    line-height: 1.7; padding: 20px;
+  }
+  .page {
+    max-width: 840px; margin: 0 auto; background: #1e1e1e;
+    border-radius: 12px; padding: 48px 56px 56px;
+  }
+  .page-icon { font-size: 42px; margin-bottom: 8px; }
+  .page-title {
+    font-size: 28px; font-weight: 700; color: #fff; margin-bottom: 6px;
+  }
+  .page-subtitle {
+    font-size: 13px; color: #666; margin-bottom: 36px;
+    padding-bottom: 20px; border-bottom: 1px solid #2a2a2a;
+  }
+  .section-bar {
+    display: flex; align-items: center; gap: 10px;
+    margin: 36px 0 16px; font-size: 18px; font-weight: 600; color: #fff;
+  }
+  .section-bar::after { content: ''; flex: 1; height: 1px; background: #333; }
+
+  /* 테이블 */
+  .market-table {
+    width: 100%; border-collapse: collapse; margin: 12px 0 20px; font-size: 13.5px;
+  }
+  .market-table th {
+    text-align: left; padding: 10px 14px; background: #252525;
+    color: #999; font-weight: 500; font-size: 12px; letter-spacing: 0.5px;
+  }
+  .market-table td { padding: 10px 14px; border-bottom: 1px solid #2a2a2a; color: #ccc; }
+  .market-table tr:last-child td { border-bottom: none; }
+  .up { color: #ef5350; }
+  .down { color: #42a5f5; }
+  .flat { color: #999; }
+
+  /* 박스 */
+  .macro-box {
+    background: #232323; border-left: 3px solid #f0c040;
+    padding: 16px 20px; border-radius: 0 8px 8px 0;
+    margin: 16px 0; font-size: 14px; line-height: 1.8; color: #ccc;
+  }
+  .macro-box strong { color: #f0c040; }
+  .risk-box {
+    background: #232323; border-left: 3px solid #ef5350;
+    padding: 16px 20px; border-radius: 0 8px 8px 0;
+    margin: 16px 0; font-size: 14px; line-height: 1.8; color: #ccc;
+  }
+  .beginner-tip {
+    background: #1a2a1a; border: 1px solid #2a3a2a; border-radius: 8px;
+    padding: 14px 18px; margin: 12px 0; font-size: 13px;
+    color: #a5d6a7; line-height: 1.7;
+  }
+  .beginner-tip::before { content: '💡 초보 팁 | '; font-weight: 600; }
+
+  /* 종목 카드 */
+  .stock-card {
+    background: #232323; border-radius: 10px; padding: 16px 20px;
+    margin: 10px 0; cursor: pointer; transition: background 0.15s;
+  }
+  .stock-card:hover { background: #282828; }
+  .stock-header {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 12px; flex-wrap: wrap;
+  }
+  .stock-left { display: flex; align-items: center; gap: 12px; }
+  .signal { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+  .signal.buy { background: #4caf50; box-shadow: 0 0 8px #4caf5060; }
+  .signal.hold { background: #ffc107; box-shadow: 0 0 8px #ffc10760; }
+  .signal.sell { background: #ef5350; box-shadow: 0 0 8px #ef535060; }
+  .stock-name { font-weight: 600; color: #fff; font-size: 15px; }
+  .stock-comment {
+    margin-top: 10px; padding-left: 22px; font-size: 13.5px;
+    color: #999; line-height: 1.6;
+  }
+  .stock-comment::before { content: '→ '; color: #666; }
+  .toggle-hint { font-size: 13px; color: #888; cursor: pointer; }
+
+  /* 토글 상세 */
+  .stock-detail {
+    display: none; margin-top: 14px; padding: 16px 20px;
+    background: #1e1e1e; border-radius: 8px;
+    font-size: 13px; color: #aaa; line-height: 1.9;
+  }
+  .stock-detail.open { display: block; }
+  .stock-detail h4 { color: #ddd; font-size: 13px; font-weight: 600; margin: 14px 0 6px; }
+  .stock-detail h4:first-child { margin-top: 0; }
+
+  /* 기타 */
+  h3 { color: #fff; font-size: 16px; margin: 24px 0 12px; font-weight: 600; }
+  h4 { color: #ddd; font-size: 14px; margin: 16px 0 8px; font-weight: 600; }
+  p { margin: 8px 0; font-size: 14px; color: #ccc; }
+  ul, ol { margin: 8px 0 8px 24px; font-size: 14px; color: #ccc; }
+  li { margin: 4px 0; line-height: 1.7; }
+  hr { border: none; border-top: 1px solid #2a2a2a; margin: 28px 0; }
+  strong { color: #fff; }
+  em { color: #f0c040; font-style: normal; }
+  a { color: #64b5f6; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  code { background: #2a2a2a; padding: 2px 6px; border-radius: 3px; font-size: 12px; color: #f0c040; }
+
+  .disclaimer {
+    margin-top: 36px; padding-top: 20px; border-top: 1px solid #2a2a2a;
+    font-size: 12px; color: #555; text-align: center;
+  }
+
+  @media (max-width: 640px) {
+    .page { padding: 24px 20px; }
+    .page-title { font-size: 22px; }
+    .section-bar { font-size: 16px; }
+    .market-table { font-size: 12px; }
+    .market-table th, .market-table td { padding: 8px 10px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="page-icon">📊</div>
+  <div class="page-title">투자 데일리 브리핑</div>
+  <div class="page-subtitle">2026-02-27 (금요일)</div>
+  <div class="page-title">📊 투자 데일리 브리핑 (2026.02.27 목요일)</div>
+<div class="section-bar">📡 시장 온도계</div>
+<table class="market-table">
+<tr><th>지표</th><th>최근 종가</th><th>등락률</th><th>상태</th></tr>
+<tr><td>KODEX 200</td><td>95,025원</td><td>0.00%</td><td>보합</td></tr>
+<tr><td>KODEX 미국S&P500</td><td>22,415원</td><td>0.00%</td><td>보합</td></tr>
+<tr><td>KODEX 미국나스닥100</td><td>23,915원</td><td>0.00%</td><td>보합</td></tr>
+<tr><td>ACE KRX금현물</td><td>33,290원</td><td>0.00%</td><td>보합</td></tr>
+<tr><td>TIGER 미국배당다우존스</td><td>14,245원</td><td>0.00%</td><td>보합</td></tr>
+<tr><td>ACE 미국30년국채액티브</td><td>7,795원</td><td>0.00%</td><td>보합</td></tr>
+</table>
+<p><strong>한국 기준금리:</strong> 3.5% | <strong>미국 기준금리:</strong> 3.64%</p>
+<hr>
+<div class="section-bar">🌐 매크로 핵심 요약</div>
+<p><strong>한줄 요약:</strong></p>
+<p>뉴스 부재와 보합장 속에서 관망세가 지배하는 '숨고르기 구간'입니다.</p>
+<p><strong>쉽게 말하면:</strong></p>
+<p>오늘은 모든 ETF가 0% 보합으로 마감하며 시장이 방향성을 잃었습니다. 미국과 한국 모두 최근 24시간 내 중요한 경제지표 발표나 정책 변화가 없었고, 투자자들은 다음 이벤트를 기다리며 관망하고 있습니다. 알파벳의 AI 투자 확대 소식(2월 초 발표)과 반도체 섹터 조정 신호가 가장 최근의 중요한 움직임입니다.</p>
+<p><strong>핵심 경제 지표 변화:</strong></p>
+<ul>
+<li>최근 24시간 내 발표된 주요 지표 없음</li>
+<li>알파벳의 2026년 자본지출 1,750억~1,850억달러 발표(2월 초) → AI 인프라 투자 2배 확대</li>
+<li>반도체 섹터가 '숨고르기 국면' 진입 신호(2월 26일)</li>
+</ul>
+<p><strong>내 포트폴리오 영향:</strong></p>
+<ol>
+<li><strong>반도체(삼성전자, SK하이닉스, TIGER 반도체 ETF)</strong>: 신고가 이후 조정 압력 증가. 단기 차익실현 물량 출회 중.</li>
+<li><strong>빅테크(알파벳, 메타)</strong>: 약세장 속에서도 상대적 선방. 알파벳의 AI 투자 확대는 장기 긍정이나 단기 비용 부담 우려.</li>
+<li><strong>현대차우</strong>: 기술적으로 가장 강한 신호. 52주 최고가 돌파 시도 중.</li>
+<li><strong>테마 ETF(조선, 중국 로봇)</strong>: 뉴스 부재로 횡보. 방향성 불확실.</li>
+</ol>
+<hr>
+<div class="section-bar">⚠️ 오늘의 리스크</div>
+<ol>
+<li><strong>반도체 조정 확산 가능성</strong>: 삼성전자와 SK하이닉스 모두 매도 신호. TIGER 반도체 ETF도 지지선 테스트 예상.</li>
+<li><strong>뉴스 공백기의 변동성 축소</strong>: 거래량 감소와 관망세는 돌발 이슈 발생 시 급격한 방향 전환 위험 내포.</li>
+<li><strong>알파벳 AI 투자 비용</strong>: 단기적으로 마진 압박 요인. 실적 기대치 상회에도 주가 시간외 하락했던 전례.</li>
+</ol>
+<hr>
+<div class="section-bar">📋 내 종목 신호 — 개별주</div>
+<div class="stock-card">
+<div class="stock-header"><div class="stock-left"><span class="signal hold"></span><span class="stock-name">� <strong>알파벳A (GOOGL)</strong> $306.50 (추정) | 확신도 5/10</span></div></div>
+</div>
+<p>→ <strong>RSI 40 근처 과매도 진입 직전, 기술적 반등 대기 구간이지만 단기 하락 추세 지속 중</strong></p>
+<div class="stock-card" onclick="this.querySelector('.stock-detail').classList.toggle('open')">
+<div class="stock-header"><span class="toggle-hint">📋 상세 분석 보기 ▾</span></div>
+<div class="stock-detail"><p><strong>차트:</strong></p>
+<ul>
+<li>캔들: 혼조세, 뚜렷한 방향성 없음</li>
+<li>이평선: 5일선 < 20일선 < 60일선 (역배열 = 단기 하락 추세)</li>
+<li>26일 거래량 급증하며 하락 → 매도세 강세</li>
+</ul>
+<p><strong>핵심 숫자:</strong></p>
+<ul>
+<li>RSI: 40.37 (과매도 구간 진입 직전, 30 이하 시 매수 기회)</li>
+<li>지지선: $302.345 (여기서 버티는지가 핵심)</li>
+<li>저항선: $313.14</li>
+</ul>
+<p><strong>뉴스:</strong></p>
+<ol>
+<li>약세장 속 M7 중 애플·구글 덜 하락, 상대적 선방 (YouTube, 2026.02.26)</li>
+<li><strong>구글 재미나 3.1 버전 공개로 4% 급등, 사상 최고 목표가 제시</strong> (YouTube, 2026.02.26)</li>
+<li>2026년 자본지출 1,750억~1,850억달러로 AI 투자 2배 확대, 실적 상회에도 시간외 하락 (딜사이트경제TV, 2026.02.04)</li>
+<li><strong>인트린식 로봇 부문 흡수, 보스턴다이나믹스 재결합으로 '로봇판 안드로이드' 전략 강화</strong> (비즈한국, 2026.02.25)</li>
+<li>2026년 2월 예상 EPS 2.64 (초이스스탁US, 2026.02.19)</li>
+</ol>
+<p><strong>리스크:</strong></p>
+<ol>
+<li>$302.345 지지 실패 시 추가 하락 가능</li>
+<li>AI 투자 확대(자본지출 2배)는 장기 긍정이나, 단기 마진 압박 요인</li>
+</ol>
+<p><strong>매크로 관점:</strong></p>
+<ul>
+<li>알파벳의 AI 인프라 투자 확대는 경기 사이클 '중반~후반'에 해당하는 기술·자본재 투자 신호</li>
+<li>재미나 3.1과 로봇 전략은 '좋은 회사에 스토리 추가' = 재평가 네러티브</li>
+<li>다만 단기적으로는 역배열 기술적 약세와 비용 증가 우려가 상충</li>
+</ul>
+</div>
+</div>
+<hr>
+<div class="stock-card">
+<div class="stock-header"><div class="stock-left"><span class="signal hold"></span><span class="stock-name">� <strong>메타 (META)</strong> $648.00 (추정) | 확신도 4/10</span></div></div>
+</div>
+<p>→ <strong>$636~$660 박스권 횡보 지속, $660.9 돌파 여부가 다음 방향 결정</strong></p>
+<div class="stock-card" onclick="this.querySelector('.stock-detail').classList.toggle('open')">
+<div class="stock-header"><span class="toggle-hint">📋 상세 분석 보기 ▾</span></div>
+<div class="stock-detail"><p><strong>차트:</strong></p>
+<ul>
+<li>캔들: 횡보 지속, 방향성 불확실</li>
+<li>이평선: 5일선 > 20일선 > 60일선 (정배열 유지 = 상승 추세 아직 살아있음)</li>
+<li>거래량 감소 → 관망세</li>
+</ul>
+<p><strong>핵심 숫자:</strong></p>
+<ul>
+<li>지지선: $636</li>
+<li>저항선: $660.9 (여기 돌파해야 다음 상승)</li>
+<li>RSI: 중립권 추정 (데이터 미제공)</li>
+</ul>
+<p><strong>뉴스:</strong></p>
+<ol>
+<li>약세장 속 M7 중 강보합 유지, 상대적 선방 (YouTube, 2026.02.26)</li>
+</ol>
+<p><strong>리스크:</strong></p>
+<ol>
+<li>$660.9 돌파 실패 시 횡보 장기화 또는 $636 지지선 테스트</li>
+<li>거래량 감소는 상승 돌파 시에도 추세 지속력 약할 가능성</li>
+</ol>
+<p><strong>매크로 관점:</strong></p>
+<ul>
+<li>M7 중 가장 안정적 → 경기 사이클 초반~중반 '소비 순환재·금융' 구간에서 강세 유지</li>
+<li>다만 뉴스 부재와 거래량 감소는 단기 방향성 부족 의미</li>
+</ul>
+</div>
+</div>
+<hr>
+<div class="stock-card">
+<div class="stock-header"><div class="stock-left"><span class="signal hold"></span><span class="stock-name">� <strong>테슬라 (TSLA)</strong> $405.00 (추정) | 확신도 5/10</span></div></div>
+</div>
+<p>→ <strong>$397.64 지지선 테스트 중, 하락 후 횡보 국면으로 단기 반등 어려움</strong></p>
+<div class="stock-card" onclick="this.querySelector('.stock-detail').classList.toggle('open')">
+<div class="stock-header"><span class="toggle-hint">📋 상세 분석 보기 ▾</span></div>
+<div class="stock-detail"><p><strong>차트:</strong></p>
+<ul>
+<li>캔들: 하락 후 횡보</li>
+<li>이평선: 5일선 < 20일선 < 60일선 (역배열 = 단기 하락 추세)</li>
+<li>26일 거래량 감소</li>
+</ul>
+<p><strong>핵심 숫자:</strong></p>
+<ul>
+<li>RSI: 43.9 (중립~약세, 추가 하락 여력 존재)</li>
+<li>지지선: $397.64 (여기서 버티는지 핵심)</li>
+<li>저항선: $416.8</li>
+</ul>
+<p><strong>뉴스:</strong></p>
+<ul>
+<li>최근 24시간 내 구체적 뉴스 없음</li>
+</ul>
+<p><strong>리스크:</strong></p>
+<ol>
+<li>$397.64 지지 실패 시 추가 하락</li>
+<li>뉴스 공백으로 모멘텀 부재</li>
+</ol>
+<p><strong>매크로 관점:</strong></p>
+<ul>
+<li>테슬라는 '소비 순환재'이자 '기술주' 성격 혼재</li>
+<li>현재 경기 사이클 위치 불명확한 상황에서 뉴스 공백은 악재</li>
+<li>거래량 감소 + 역배열은 단기 추가 매수 근거 부족</li>
+</ul>
+</div>
+</div>
+<hr>
+<div class="stock-card">
+<div class="stock-header"><div class="stock-left"><span class="signal hold"></span><span class="stock-name">� <strong>네이버 (035420)</strong> 256,000원 (추정) | 확신도 4/10</span></div></div>
+</div>
+<p>→ <strong>267,000원 저항선 돌파 시도 중, 관망 후 방향 결정 권고</strong></p>
+<div class="stock-card" onclick="this.querySelector('.stock-detail').classList.toggle('open')">
+<div class="stock-header"><span class="toggle-hint">📋 상세 분석 보기 ▾</span></div>
+<div class="stock-detail"><p><strong>차트:</strong></p>
+<ul>
+<li>캔들: 최근 3일 양봉, 추세 전환 시도 가능성</li>
+<li>이평선: 5일선 > 20일선 > 60일선 (정배열 초입 = 상승 전환 시도 중)</li>
+<li>거래량 증가 → 매수세 유입</li>
+</ul>
+<p><strong>핵심 숫자:</strong></p>
+<ul>
+<li>지지선: 250,000원</li>
+<li>저항선: 267,000원 (여기 돌파해야 상승 확정)</li>
+<li>RSI: 중립권 추정</li>
+</ul>
+<p><strong>뉴스:</strong></p>
+<ul>
+<li>최근 24시간 내 구체적 뉴스 없음</li>
+</ul>
+<p><strong>리스크:</strong></p>
+<ol>
+<li>267,000원 돌파 실패 시 250,000원 지지선 재테스트</li>
+<li>뉴스 공백으로 상승 모멘텀 약함</li>
+</ol>
+<p><strong>매크로 관점:</strong></p>
+<ul>
+<li>국내 기술주는 미국 빅테크 대비 FCF 창출력과 주주환원 의지 약함</li>
+<li>거버넌스 개혁 테마 없으면 단기 등락에 그칠 가능성</li>
+<li>정배열 초입 단계는 '기다려볼 만한' 시점</li>
+</ul>
+</div>
+</div>
+<hr>
+<div class="stock-card">
+<div class="stock-header"><div class="stock-left"><span class="signal buy"></span><span class="stock-name">� <strong>현대차우 (005385)</strong> 307,000원 (추정) | 확신도 7/10</span></div></div>
+</div>
+<p>→ <strong>318,500원 52주 최고가 돌파 시도 중, 기술적으로 가장 강한 신호</strong></p>
+<div class="stock-card" onclick="this.querySelector('.stock-detail').classList.toggle('open')">
+<div class="stock-header"><span class="toggle-hint">📋 상세 분석 보기 ▾</span></div>
+<div class="stock-detail"><p><strong>차트:</strong></p>
+<ul>
+<li>캔들: 최근 2일 연속 상승, 강한 매수세</li>
+<li>이평선: 5일선 > 20일선 > 60일선 (정배열 강화 = 상승 추세 명확)</li>
+<li>거래량 증가 → 상승 추세 지지</li>
+</ul>
+<p><strong>핵심 숫자:</strong></p>
+<ul>
+<li>지지선: 297,500원</li>
+<li>저항선: 318,500원 (52주 최고가 = 여기 돌파 시 신고가 랠리)</li>
+<li>RSI: 과매수 구간 진입 추정</li>
+</ul>
+<p><strong>뉴스:</strong></p>
+<ul>
+<li>최근 24시간 내 구체적 뉴스 없음</li>
+</ul>
+<p><strong>리스크:</strong></p>
+<ol>
+<li>318,500원 돌파 실패 시 단기 조정</li>
+<li>과매수 구간 진입 시 차익실현 압력</li>
+</ol>
+<p><strong>매크로 관점:</strong></p>
+<ul>
+<li>자동차는 경기 사이클 '초반~중반'의 소비 순환재 강세 섹터</li>
+<li>한국 자동차 섹터는 주주환원 개혁 테마로 재평가 중 (우선주 밸류업)</li>
+<li>거래량 증가 + 정배열 강화는 '온기 확산'보다 '강자 집중' 흐름에 부합</li>
+</ul>
+</div>
+</div>
+<hr>
+<div class="stock-card">
+<div class="stock-header"><div class="stock-left"><span class="signal sell"></span><span class="stock-name">� <strong>삼성전자 (005930)</strong> 210,000원 (추정) | 확신도 8/10</span></div></div>
+</div>
+<p>→ <strong>201,000원 지지선 하향 돌파 가능성 높음, 추가 하락 대비 필요</strong></p>
+
+  <div class="disclaimer">
+    ⚠️ 본 브리핑은 AI가 생성한 참고 자료이며, 투자 권유가 아닙니다.<br>
+    투자 판단의 책임은 본인에게 있습니다.
+  </div>
+</div>
+</body>
+</html>
