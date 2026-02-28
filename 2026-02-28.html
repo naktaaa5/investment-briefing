@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>투자 브리핑 2026-02-28</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Noto Sans KR',sans-serif; background:#191919; color:#e0e0e0; line-height:1.7; padding:20px; }
+.tab-container { max-width:820px; margin:0 auto; }
+.tabs { display:flex; gap:4px; margin-bottom:0; }
+.tab { padding:12px 28px; background:#2a2a2a; border:none; color:#888; font-size:14px; font-family:'Noto Sans KR',sans-serif; font-weight:500; cursor:pointer; border-radius:8px 8px 0 0; transition:all 0.2s; }
+.tab.active { background:#1e1e1e; color:#fff; }
+.tab:hover:not(.active) { background:#333; color:#bbb; }
+.page { max-width:820px; margin:0 auto; background:#1e1e1e; border-radius:0 8px 12px 12px; padding:48px 56px 56px; display:none; }
+.page.active { display:block; }
+.page-icon { font-size:42px; margin-bottom:8px; }
+.page-title { font-size:28px; font-weight:700; color:#fff; margin-bottom:6px; }
+.page-subtitle { font-size:13px; color:#666; margin-bottom:36px; padding-bottom:20px; border-bottom:1px solid #2a2a2a; }
+.section-bar { display:flex; align-items:center; gap:10px; margin:36px 0 16px; font-size:18px; font-weight:600; color:#fff; }
+.section-bar::after { content:''; flex:1; height:1px; background:#333; }
+.market-table { width:100%; border-collapse:collapse; margin:12px 0 20px; font-size:13.5px; }
+.market-table th { text-align:left; padding:10px 14px; background:#252525; color:#999; font-weight:500; font-size:12px; letter-spacing:0.5px; }
+.market-table td { padding:10px 14px; border-bottom:1px solid #2a2a2a; color:#ccc; }
+.market-table tr:last-child td { border-bottom:none; }
+.up { color:#ef5350; }
+.down { color:#42a5f5; }
+.macro-box { background:rgba(240,192,64,0.05); border:none; padding:20px 24px; border-radius:10px; margin:8px 0; font-size:14px; line-height:1.8; color:#ccc; }
+.macro-box strong { color:#f0c040; }
+.risk-box { background:rgba(239,83,80,0.05); border:none; padding:20px 24px; border-radius:10px; margin:8px 0; font-size:14px; line-height:1.8; color:#ccc; }
+.risk-box strong { color:#ef5350; }
+.dca-box { background:rgba(66,165,245,0.05); border:none; padding:20px 24px; border-radius:10px; margin:8px 0; font-size:14px; line-height:1.8; color:#ccc; }
+.dca-box strong { color:#42a5f5; }
+.beginner-tip { background:rgba(76,175,80,0.05); border:none; border-radius:10px; padding:14px 18px; margin:8px 0; font-size:13px; color:#a5d6a7; line-height:1.7; }
+.beginner-tip::before { content:'💡 초보 팁 | '; font-weight:600; }
+.stock-card { background:#232323; border-radius:10px; padding:16px 20px; margin:10px 0; cursor:pointer; transition:background 0.15s; }
+.stock-card:hover { background:#282828; }
+.stock-header { display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; }
+.stock-left { display:flex; align-items:center; gap:12px; }
+.signal { width:10px; height:10px; border-radius:50%; flex-shrink:0; }
+.signal.buy { background:#4caf50; box-shadow:0 0 8px #4caf5060; }
+.signal.hold { background:#ffc107; box-shadow:0 0 8px #ffc10760; }
+.signal.sell { background:#ef5350; box-shadow:0 0 8px #ef535060; }
+.stock-name { font-weight:600; color:#fff; font-size:15px; }
+.stock-price { font-size:14px; color:#bbb; margin-left:8px; }
+.stock-badge { font-size:12px; padding:3px 10px; border-radius:12px; font-weight:500; }
+.badge-buy { background:#4caf5020; color:#4caf50; }
+.badge-hold { background:#ffc10720; color:#ffc107; }
+.badge-sell { background:#ef535020; color:#ef5350; }
+.stock-meta { margin-top:10px; padding:8px 0; font-size:13px; color:#999; display:flex; gap:16px; flex-wrap:wrap; }
+.stock-meta .meta-label { color:#666; }
+.stock-meta .meta-value { color:#ccc; font-weight:500; }
+.stock-comment { margin-top:8px; padding-left:22px; font-size:13.5px; color:#999; line-height:1.6; }
+.stock-comment::before { content:'→ '; color:#666; }
+.confidence { font-size:12px; color:#777; margin-left:auto; flex-shrink:0; }
+.toggle-hint { display:inline-block; font-size:11px; color:#555; margin:10px 0 0 0; cursor:pointer; padding:4px 10px; background:#1e1e1e; border-radius:4px; }
+.toggle-hint:hover { color:#888; background:#252525; }
+.stock-detail { display:none; margin-top:14px; padding:20px 24px; background:#1e1e1e; border-radius:8px; font-size:13px; color:#aaa; line-height:1.9; }
+.stock-detail.open { display:block; }
+.stock-detail h4 { color:#ddd; font-size:13px; font-weight:600; margin:16px 0 8px; }
+.stock-detail h4:first-child { margin-top:0; }
+.news-item { padding:6px 0 6px 16px; border-left:2px solid #333; margin:6px 0; font-size:12.5px; color:#aaa; line-height:1.6; }
+.action-item { padding:10px 0; border-bottom:1px solid #2a2a2a; font-size:14px; line-height:1.7; color:#ccc; }
+.action-item:last-child { border-bottom:none; }
+.action-label { display:inline-block; font-size:11px; padding:2px 8px; border-radius:4px; font-weight:500; margin-right:8px; vertical-align:middle; }
+.label-buy { background:#4caf5020; color:#4caf50; }
+.label-wait { background:#ffc10720; color:#ffc107; }
+.label-sell { background:#ef535020; color:#ef5350; }
+.label-keep { background:#42a5f520; color:#42a5f5; }
+.disclaimer { margin-top:36px; padding-top:20px; border-top:1px solid #2a2a2a; font-size:12px; color:#555; text-align:center; }
+.cycle-visual { display:flex; align-items:center; justify-content:center; gap:0; margin:20px 0; flex-wrap:wrap; }
+.cycle-phase { padding:12px 20px; font-size:13px; font-weight:500; text-align:center; min-width:120px; color:#666; border:1px solid #333; border-radius:8px; }
+.cycle-phase.active { background:rgba(240,192,64,0.05); border:1px solid rgba(240,192,64,0.25); color:#f0c040; }
+.cycle-arrow { color:#444; font-size:18px; padding:0 4px; }
+.sector-table { width:100%; border-collapse:collapse; margin:12px 0; font-size:13.5px; }
+.sector-table th { text-align:left; padding:10px 14px; background:#252525; color:#999; font-weight:500; font-size:12px; }
+.sector-table td { padding:10px 14px; border-bottom:1px solid #2a2a2a; }
+.sector-strong { color:#4caf50; font-weight:500; }
+.sector-weak { color:#ef5350; font-weight:500; }
+.sector-neutral { color:#999; }
+.idea-card { background:#232323; border-radius:10px; padding:18px 20px; margin:10px 0; }
+.idea-title { font-weight:600; color:#fff; font-size:14px; margin-bottom:8px; }
+.idea-reason { font-size:13px; color:#aaa; line-height:1.7; }
+.idea-tag { display:inline-block; font-size:11px; padding:2px 8px; border-radius:4px; margin-right:6px; margin-bottom:6px; }
+.tag-sector { background:#9c27b020; color:#ce93d8; }
+.tag-timing { background:#ff980020; color:#ffb74d; }
+.term-box { background:rgba(100,181,246,0.05); border:none; border-radius:8px; padding:14px 18px; margin:8px 0; font-size:13px; }
+.term-box .term-word { color:#64b5f6; font-weight:600; }
+.term-box .term-def { color:#999; }
+.etf-contents { background:#232323; border-radius:8px; padding:14px 18px; margin:8px 0; font-size:13px; color:#aaa; line-height:1.7; }
+.etf-contents strong { color:#ccc; }
+@media (max-width:700px) { .page { padding:28px 20px 36px; } .page-title { font-size:22px; } .stock-header { flex-direction:column; align-items:flex-start; } .stock-meta { flex-direction:column; gap:4px; } .cycle-visual { flex-direction:column; gap:4px; } .cycle-arrow { transform:rotate(90deg); } }</style>
+</head>
+<body>
+<div class="page active" style="border-radius:12px;">
+  <div class="page-icon">📊</div>
+  <div class="page-title">2월 28일 (토) 투자 데일리 브리핑</div>
+  <div class="page-subtitle">🏷 태그: 투자 &nbsp;|&nbsp; 자동 생성: 08:30 KST</div>
+  <div class="section-bar">📊 투자 데일리 브리핑</div>
+<div class="section-bar">📡 시장 온도계</div>
+<table class="market-table">
+<tr><th>지표</th><th>최근 종가</th><th>등락률</th><th>상태</th></tr>
+<tr><td>KODEX 200</td><td>94,120원</td><td class="down">-0.95%</td><td class="down">🔴 약세</td></tr>
+<tr><td>KODEX 미국S&P500</td><td>22,445원</td><td class="up">+0.13%</td><td class="up">🟢 보합</td></tr>
+<tr><td>KODEX 미국나스닥100</td><td>23,830원</td><td class="down">-0.36%</td><td class="down">🔴 보합</td></tr>
+<tr><td>ACE KRX금현물</td><td>33,530원</td><td class="up">+0.72%</td><td class="up">🟢 강세</td></tr>
+<tr><td>TIGER 미국배당다우존스</td><td>14,285원</td><td class="up">+0.28%</td><td class="up">🟢 보합</td></tr>
+<tr><td>ACE 미국30년국채액티브</td><td>7,840원</td><td class="up">+0.58%</td><td class="up">🟢 강세</td></tr>
+</table>
+<div class="section-bar">🌐 매크로 핵심 요약</div>
+<div class="section-bar">한줄 요약</div>
+<div class="macro-box">AI 인프라 투자 확대로 미국 반도체 섹터 급등했으나, 한국 증시는 독자 약세를 보이며 시장 간 디커플링(분리) 현상 발생.</div>
+<div class="section-bar">쉽게 말하면</div>
+<p style="margin:8px 0;color:#ccc;font-size:14px;line-height:1.7">메타가 AMD·구글로부터 대규모 AI 칩을 사들이면서 미국 반도체주가 급등했습니다(AMD +8.77%, 필라델피아 반도체지수 +1.45%). 그러나 한국 증시는 이 흐름을 따라가지 못하고 외국인 매도 압력과 원화 약세로 하락했습니다. 금과 국채가 동시에 상승한 것은 투자자들이 '안전자산'으로 비중을 옮기고 있다는 신호입니다.</p>
+<div class="section-bar">핵심 경제 지표 변화</div>
+<p style="margin:8px 0;color:#ccc;font-size:14px;line-height:1.7">- <strong>미국 소비자 신뢰 지수 (2월)</strong>: 예상치 상회 개선 → 소비자 심리 회복 신호</p>
+<p style="margin:8px 0;color:#ccc;font-size:14px;line-height:1.7">- <strong>한미 금리차</strong>: 0.39%p (미국 3.64% vs 한국 3.25%) → 원화 약세 압력 지속</p>
+<p style="margin:8px 0;color:#ccc;font-size:14px;line-height:1.7">- <strong>필라델피아 반도체지수</strong>: +1.45% → AI 칩 수요 폭발로 업종 전반 호조</p>
+<div class="section-bar">내 포트폴리오 영향</div>
+<p style="margin:8px 0;color:#ccc;font-size:14px;line-height:1.7">1. <strong>긍정적</strong>: 메타(+2.25%), AMD 급등으로 반도체 ETF 단기 수혜 기대. SK하이닉스·삼성전자는 메모리 수요 간접 수혜 가능성.</p>
+<p style="margin:8px 0;color:#ccc;font-size:14px;line-height:1.7">2. <strong>부정적</strong>: 테슬라 법적 리스크(배상금 3,509억 원) 및 유럽 판매 -17%로 구조적 약세 지속. 단기 반등보다 비중 조절 필요.</p>
+<p style="margin:8px 0;color:#ccc;font-size:14px;line-height:1.7">3. <strong>혼조</strong>: 알파벳·메타는 기술적으로 중립. 300달러(알파벳), 630달러(메타) 지지선 이탈 시 추가 하락 위험.</p>
+<p style="margin:8px 0;color:#ccc;font-size:14px;line-height:1.7">4. <strong>디커플링 리스크</strong>: 미국 테크 강세에도 한국 증시 동조 실패. 코스피는 외국인 매도 지속 시 92,000원대 추가 하락 가능.</p>
+<div class="section-bar">⚠️ 오늘의 리스크</div>
+<div class="risk-box"><strong>⚠️ 오늘의 리스크</strong><br><br>1. <em>한국 증시 독자 약세</em>*: 미국 반도체 급등과 무관하게 코스피 -0.95% 하락. 외국인 자금 이탈 신호.<br>2. <em>테슬라 법적 폭탄</em>*: 2억 4,300만 달러 배상 판결로 자율주행 사업 신뢰도 타격. 추가 소송 리스크 잔존.<br>3. <em>금·국채 동반 상승</em>*: 위험회피 심리 확산. 주식 조정 시 방어 자산으로 자금 이동 가능성.</div>
+<div class="section-bar">📋 내 종목 신호 — 개별주</div>
+<div class="beginner-tip">🟢 매수 = 사기 좋은 타이밍 &nbsp;|&nbsp; 🟡 중립 = 지켜보기 &nbsp;|&nbsp; 🔴 매도 = 파는 게 나을 수 있음 &nbsp;|&nbsp; 확신도는 AI가 얼마나 확신하는지 (10점 만점)</div>
+<div class="section-bar">🟡 알파벳A (GOOGL) $310.89 | 확신도 4/10</div>
+<p style="margin:8px 0;color:#ccc;font-size:14px;line-height:1.7"><strong>신호:</strong> 중립 | <strong>가격:</strong> $310.89 | <strong>등락률:</strong> +0.68%</p>
+<p style="margin:8px 0;color:#ccc;font-size:14px;line-height:1.7">→ 300달러 지지선 근처에서 방어 중이나 RSI 50 이하로 추세 전환 불확실. 관망 권고.</p>
+<span class="toggle-hint" onclick="event.stopPropagation();toggleDetail('d1')">📋 상세 분석 보기 ▾</span>
+<div class="stock-detail" id="d1">
+<h4>📈 차트:</h4>
+<div style="padding:2px 0">• 26일 음봉 후 27일 소폭 양봉. 하락 추세 반전 신호 약함</div>
+<div style="padding:2px 0">• 5일선 < 20일선 < 60일선 역배열. 단기 하락 추세 유지</div>
+<div style="padding:2px 0">• 윗꼬리 없는 약한 양봉으로 매수세 미약</div>
+<h4>📊 핵심 숫자:</h4>
+<div style="padding:2px 0">• RSI: 50 이하 (약세 구간)</div>
+<div style="padding:2px 0">• 지지선: $302.35 (26일 저점)</div>
+<div style="padding:2px 0">• 저항선: $316.50 (20일 고점)</div>
+<h4>📰 뉴스:</h4>
+메타의 AI 칩 대량 구매 소식에 클라우드 경쟁 압력 부각. 구글 TPU 임대 계약 체결로 일부 수혜 있으나, 메타의 AMD 선택으로 엔비디아 의존도 분산 신호.<br>
+<h4>⚠️ 리스크:</h4>
+<div style="padding:2px 0;color:#aaa"><span style="color:#ef5350;font-weight:500">1.</span> 300달러 지지 실패 시 290달러까지 추가 하락 가능</div>
+<div style="padding:2px 0;color:#aaa"><span style="color:#ef5350;font-weight:500">2.</span> AI 칩 시장 경쟁 격화로 클라우드 마진 압박 우려</div>
+<div style="padding:2px 0;color:#aaa"><span style="color:#ef5350;font-weight:500">3.</span> 기술적 반등 시도 실패 시 횡보 장기화 가능성</div>
+</div>
+<div class="section-bar">🟢 메타 (META) $641.87 | 확신도 6/10</div>
+<p style="margin:8px 0;color:#ccc;font-size:14px;line-height:1.7"><strong>신호:</strong> 중립→매수 대기 | <strong>가격:</strong> $641.87 | <strong>등락률:</strong> +2.25%</p>
+<p style="margin:8px 0;color:#ccc;font-size:14px;line-height:1.7">→ AMD·구글과 대규모 AI 칩 계약으로 모멘텀 확보. 630달러 지지 확인 시 매수 고려.</p>
+<span class="toggle-hint" onclick="event.stopPropagation();toggleDetail('d2')">📋 상세 분석 보기 ▾</span>
+<div class="stock-detail" id="d2">
+<h4>📈 차트:</h4>
+<div style="padding:2px 0">• 27일 장대 양봉(+2.25%)으로 반등 시도</div>
+<div style="padding:2px 0">• 5일선 < 20일선 < 60일선 역배열이지만 간격 좁아짐</div>
+<div style="padding:2px 0">• 거래량 증가로 매수세 유입 확인</div>
+<h4>📊 핵심 숫자:</h4>
+<div style="padding:2px 0">• RSI: 50 근처 (중립 구간 진입)</div>
+<div style="padding:2px 0">• 지지선: $636.00 (23일 저점)</div>
+<div style="padding:2px 0">• 저항선: $661.00 (26일 고점)</div>
+<div style="padding:2px 0">• 목표가: 2027년 XPU 수주 54억 달러 (브로드컴 계약)</div>
+<h4>📰 뉴스:</h4>
+AMD 및 구글로부터 AI 칩 대규모 매입 계약 체결. 2027년까지 브로드컴 커스텀 XPU 54억 달러 수주 추정. 트럼프의 전력 비용 부담 서약에도 불구하고 AI 인프라 투자 가속화.<br>
+<h4>⚠️ 리스크:</h4>
+<div style="padding:2px 0;color:#aaa"><span style="color:#ef5350;font-weight:500">1.</span> 630달러 지지 실패 시 600달러까지 하락 가능</div>
+<div style="padding:2px 0;color:#aaa"><span style="color:#ef5350;font-weight:500">2.</span> AI 인프라 투자 과열 우려 (과거 메타버스 투자 실패 기억)</div>
+<div style="padding:2px 0;color:#aaa"><span style="color:#ef5350;font-weight:500">3.</span> 트럼프 행정부의 빅테크 전력 부담 정책 불확실성</div>
+</div>
+<div class="section-bar">🔴 테슬라 (TSLA) $402.74 | 확신도 2/10</div>
+<p style="margin:8px 0;color:#ccc;font-size:14px;line-height:1.7"><strong>신호:</strong> 매도/비중 축소 | <strong>가격:</strong> $402.74 | <strong>등락률:</strong> +1.96%</p>
+<p style="margin:8px 0;color:#ccc;font-size:14px;line-height:1.7">→ 법적 배상금 3,509억 원 폭탄 + 유럽 판매 -17%. 기술적 반등은 비중 줄일 기회로 활용.</p>
+<span class="toggle-hint" onclick="event.stopPropagation();toggleDetail('d3')">📋 상세 분석 보기 ▾</span>
+<div class="stock-detail" id="d3">
+<h4>📈 차트:</h4>
+<div style="padding:2px 0">• 27일 윗꼬리 달린 양봉. 상승 거부감 여전</div>
+<div style="padding:2px 0">• 5일선 < 20일선 < 60일선 역배열 지속</div>
+<div style="padding:2px 0">• 400달러 지지선 근처 횡보. 돌파 실패 시 387달러(52주 최저가) 재테스트</div>
+<h4>📊 핵심 숫자:</h4>
+<div style="padding:2px 0">• RSI: 50 이하 (약세)</div>
+<div style="padding:2px 0">• PE: 347.31 (극단적 고평가)</div>
+<div style="padding:2px 0">• 지지선: $394.04 (23일 저점)</div>
+<div style="padding:2px 0">• 저항선: $416.81 (26일 고점)</div>
+<div style="padding:2px 0">• 2025년 1월 유럽 판매: 전년 대비 -17% (13개월 연속 감소)</div>
+<h4>📰 뉴스:</h4>
+오토파일럿 치사 사고로 2억 4,300만 달러(약 3,509억 원) 배상 판결. FSD 명칭에 'supervised' 추가 강제 및 월 99달러 구독 전환 압박. 유럽 판매 부진(전년 대비 -17%) 지속. 중국 시장 7년 초저금리 프로모션 진행 중.<br>
+<h4>⚠️ 리스크:</h4>
+<div style="padding:2px 0;color:#aaa"><span style="color:#ef5350;font-weight:500">1.</span> 자율주행 법적 리스크 확대. 추가 소송 가능성 상존</div>
+<div style="padding:2px 0;color:#aaa"><span style="color:#ef5350;font-weight:500">2.</span> 2026년까지 판매 성장 회복 불확실. 전기차 수익성 악화</div>
+<div style="padding:2px 0;color:#aaa"><span style="color:#ef5350;font-weight:500">3.</span> 400달러 지지 실패 시 52주 최저가 387달러 재방문 가능성</div>
+</div>
+<div class="section-bar">🟡 네이버 (035420) 250,500원 | 확신도 4/10</div>
+<p style="margin:8px 0;color:#ccc;font-size:14px;line-height:1.7"><strong>신호:</strong> 중립 | <strong>가격:</strong> 250,500원 | <strong>등락률:</strong> 데이터 미제공</p>
+<p style="margin:8px 0;color:#ccc;font-size:14px;line-height:1.7">→ 250,000원 지지선 근처 약세. 5일선 데드크로스 임박으로 추가 하락 가능성. 관망 필요.</p>
+<span class="toggle-hint" onclick="event.stopPropagation();toggleDetail('d4')">📋 상세 분석 보기 ▾</span>
+<div class="stock-detail" id="d4">
+<h4>📈 차트:</h4>
+<div style="padding:2px 0">• 최근 3일 하락 추세. 27일 음봉으로 약세 지속</div>
+<div style="padding:2px 0">• 5일선 < 20일선 < 60일선 역배열 임박 (데드크로스 경고)</div>
+<div style="padding:2px 0">• 거래량 감소로 매수·매도 양측 모두 관망</div>
+<h4>📊 핵심 숫자:</h4>
+<div style="padding:2px 0">• 지지선: 250,000원 (최근 저점)</div>
+<div style="padding:2px 0">• 저항선: 262,000원 (최근 고점)</div>
+<div style="padding:2px 0">• 52주 최저가: 237,500원</div>
+<h4>📰 뉴스:</h4>
+최근 48시간 내 주요 뉴스 없음.<br>
+<h4>⚠️ 리스크:</h4>
+<div style="padding:2px 0;color:#aaa"><span style="color:#ef5350;font-weight:500">1.</span> 250,000원 지지 실패 시 52주 최저가 237,500원 재테스트</div>
+<div style="padding:2px 0;color:#aaa"><span style="color:#ef5350;font-weight:500">2.</span> 데드크로스 발생 시 기술적 매도 압력 증가</div>
+<div style="padding:2px 0;color:#aaa"><span style="color:#ef5350;font-weight:500">3.</span> 국내 증시 전반 약세로 수급 악화 가능성</div>
+</div>
+<div class="section-bar">🟢 현대차우 (005385) 310,000원 | 확신도 6/10</div>
+<p style="margin:8px 0;color:#ccc;font-size:14px;line-height:1.7"><strong>신호:</strong> 매수 | <strong>가격:</strong> 310,000원 | <strong>등락률:</strong> 데이터 미제공</p>
+<p style="margin:8px 0;color:#ccc;font-size:14px;line-height:1.7">→ 27일 장대 양봉+거래량 급증으로 상승 전환 신호. 329,000원 돌파 시 추가 상승 기대.</p>
+<span class="toggle-hint" onclick="event.stopPropagation();toggleDetail('d5')">📋 상세 분석 보기 ▾</span>
+<div class="stock-detail" id="d5">
+<h4>📈 차트:</h4>
+<div style="padding:2px 0">• 27일 장대 양봉 출현. 하락 추세 반전 신호</div>
+<div style="padding:2px 0">• 5일선이 20일선 상향 돌파 (골든크로스 임박)</div>
+<div style="padding:2px 0">• 거래량 급증으로 강한 매수세 유입 확인</div>
+<h4>📊 핵심 숫자:</h4>
+<div style="padding:2px 0">• 지지선: 296,000원 (27일 저점)</div>
+<div style="padding:2px 0">• 저항선: 329,000원 (52주 최고가)</div>
+<h4>📰 뉴스:</h4>
+자동차 업계 전반 구독 모델(FSD, 슈퍼 크루즈 등) 확대로 소프트웨어 기반 수익성 개선 기대. 테슬라·GM·포드 동반 상승 흐름.<br>
+<h4>⚠️ 리스크:</h4>
+<div style="padding:2px 0;color:#aaa"><span style="color:#ef5350;font-weight:500">1.</span> 329,000원 돌파 실패 시 단기 조정 가능</div>
+<div style="padding:2px 0;color:#aaa"><span style="color:#ef5350;font-weight:500">2.</span> 296,000원 하회 시 추세 이탈로 손절 고려</div>
+<div style="padding:2px 0;color:#aaa"><span style="color:#ef5350;font-weight:500">3.</span> 국내 증시 약세로 상승 탄력 제한 가능</div>
+</div>
+<div class="section-bar">🟡 삼성전자 (005930) 215,000원 | 확신도 5/10</div>
+<p style="margin:8px 0;color:#ccc;font-size:14px;line-height:1.7"><strong>신호:</strong> 중립 | <strong>가격:</strong> 215,000원 | <strong>등락률:</strong> 데이터 미제공</p>
+<p style="margin:8px 0;color:#ccc;font-size:14px;line-height:1.7">→ 27일 장대 양봉이지만 윗꼬리 길어 223,000원 저항 확인 필요. 단기 관망.</p>
+<span class="toggle-hint" onclick="event.stopPropagation();toggleDetail('d6')">📋 상세 분석 보기 ▾</span>
+<div class="stock-detail" id="d6">
+<h4>📈 차트:</h4>
+<div style="padding:2px 0">• 27일 장대 양봉이지만 윗꼬리 길어 매도 압력 동반</div>
+<div style="padding:2px 0">• 5일선 > 20일선 > 60일선 정배열이지만 간격 좁음</div>
+<div style="padding:2px 0">• 거래량 급증은 긍정적이나 윗꼬리로 신뢰도 하락</div>
+<h4>📊 핵심 숫자:</h4>
+<div style="padding:2px 0">• 지지선: 210,000원 (27일 시가)</div>
+<div style="padding:2px 0">• 저항선: 223,000원 (52주 최고가)</div>
+<h4>📰 뉴스:</h4>
+삼성 언팩을 통한 칩 가격 급등 소식. 메타의 대규모 AI 칩 수주로 메모리 수요 간접 수혜 기대. 다만 애플 주가 상승폭 제한 요인으로도 작용.<br>
+<h4>⚠️ 리스크:</h4>
+<div style="padding:2px 0;color:#aaa"><span style="color:#ef5350;font-weight:500">1.</span> 223,000원 돌파 실패 시 210,000원까지 재조정 가능</div>
+<div style="padding:2px 0;color:#aaa"><span style="color:#ef5350;font-weight:500">2.</span> 미국 반도체 급등에도 국내 증시 디커플링으로 동조 실패 위험</div>
+<div style="padding:2px 0;color:#aaa"><span style="color:#ef5350;font-weight:500">3.</span> 기술적 과열 신호로 단기 차익 실현 압력 존재</div>
+</div>
+<div class="section-bar">🟡 SK하이닉스 (000660) 1,050,000원 | 확신도 5/10</div>
+<p style="margin:8px 0;color:#ccc;font-size:14px;line-height:1.7"><strong>신호:</strong> 중립 | <strong>가격:</strong> 1,050,000원 | <strong>등락률:</strong> 데이터 미제공</p>
+<p style="margin:8px 0;color:#ccc;font-size:14px;line-height:1.7">→ 52주 최고가 1,099,000원 돌파 실패 후 조정. 1,023,000원 지지 확인 필요.</p>
+<span class="toggle-hint" onclick="event.stopPropagation();toggleDetail('d7')">📋 상세 분석 보기 ▾</span>
+<div class="stock-detail" id="d7">
+<h4>📈 차트:</h4>
+<div style="padding:2px 0">• 27일 윗꼬리 긴 양봉. 52주 고점 근처 매도세 강함</div>
+<div style="padding:2px 0">• 5일선 < 20일선 < 60일선 역배열로 단기 조정 신호</div>
+<div style="padding:2px 0">• 거래량 증가는 차익 실현 물량 출회로 해석</div>
+<h4>📊 핵심 숫자:</h4>
+<div style="padding:2px 0">• 지지선: 1,023,000원 (26일 저점)</div>
+<div style="padding:2px 0">• 저항선: 1,099,000원 (52주 최고가)</div>
+<h4>📰 뉴스:</h4>
+메타의 AMD·구글 AI 칩 대규모 수주로 HBM(고대역폭 메모리) 수요 간접 수혜 기대. 다만 미국 반도체 급등 대비 국내 증시 디커플링으로 즉각 반영 실패.<br>
+<h4>⚠️ 리스크:</h4>
+<div style="padding:2px 0;color:#aaa"><span style="color:#ef5350;font-weight:500">1.</span> 1,023,000원 지지 실패 시 하락 추세 전환 가능</div>
+<div style="padding:2px 0;color:#aaa"><span style="color:#ef5350;font-weight:500">2.</span> 52주 최고가 돌파 실패로 단기 모멘텀 약화</div>
+<div style="padding:2px 0;color:#aaa"><span style="color:#ef5350;font-weight:500">3.</span> 외국인 매도 지속 시 추가 조정 압력</div>
+</div>
+<div class="section-bar">📋 내 종목 신호 — 테마 ETF</div>
+<div class="section-bar">🟢 TIGER 반도체 Top10 (091160) 104,950원 | 확신도 7/10</div>
+<p style="margin:8px 0;color:#ccc;font-size:14px;line-height:1.7"><strong>신호:</strong> 매수 | <strong>가격:</strong> 104,950원 | <strong>등락률:</strong> 데이터 미제공</p>
+<p style="margin:8px 0;color:#ccc;font-size:14px;line-height:1.7">→ 27일 장대 양봉+거래량 급증. 메타의 AI 칩 대량 수주로 반도체 업황 개선 기대. 107,800원 돌파 시 추가 상승 가능.</p>
+<span class="toggle-hint" onclick="event.stopPropagation();toggleDetail('d8')">📋 상세 분석 보기 ▾</span>
+<div class="stock-detail" id="d8">
+<h4>📊 핵심 숫자:</h4>
+<div style="padding:2px 0">• 지지선: 100,755원 (27일 저점)</div>
+<div style="padding:2px 0">• 저항선: 107,800원 (52주 최고가)</div>
+<div style="padding:2px 0">• 5일선이 20일선·60일선 모두 상향 돌파 (골든크로스)</div>
+<h4>📰 뉴스:</h4>
+메타의 AMD·구글 AI 칩 대규모 계약으로 필라델피아 반도체지수 +1.45%. AMD +8.77%, TSMC +4.25%, 인텔 +5.71% 급등. SK하이닉스·삼성전자 등 메모리 기업 간접 수혜 기대.<br>
+<h4>💡 판단:</h4>
+미국 반도체 섹터 강세가 뚜렷하며, 한국 반도체 기업들도 AI 인프라 확대로 메모리·파운드리 수요 증가 수혜 예상. 단, 국내 증시 약세로 동조 지연 가능성 있어 107,800원 돌파 확인 후 추가 매수 권고. 100,755원 이탈 시 손절.<br>
+</div>
+<div class="section-bar">🟡 SOL 조선 Top3플러스 (466920) 38,450원 | 확신도 3/10</div>
+<p style="margin:8px 0;color:#ccc;font-size:14px;line-height:1.7"><strong>신호:</strong> 중립 | <strong>가격:</strong> 38,450원 | <strong>등락률:</strong> 데이터 미제공</p>
+<p style="margin:8px 0;color:#ccc;font-size:14px;line-height:1.7">→ 횡보 구간. 37,715원 지지 vs 39,450원 저항 사이 방향성 불명. 거래량 회복 전까지 관망.</p>
+<span class="toggle-hint" onclick="event.stopPropagation();toggleDetail('d9')">📋 상세 분석 보기 ▾</span>
+<div class="stock-detail" id="d9">
+<h4>📊 핵심 숫자:</h4>
+<div style="padding:2px 0">• 지지선: 37,715원 (26, 24일 저점)</div>
+<div style="padding:2px 0">• 저항선: 39,450원 (23일 고점)</div>
+<div style="padding:2px 0">• 5일선 < 20일선 < 60일선 역배열</div>
+<h4>📰 뉴스:</h4>
+최근 48시간 내 주요 뉴스 없음.<br>
+<h4>💡 판단:</h4>
+조선주는 경기 순환 후반부 섹터로, 현재 글로벌 경기 둔화 우려 국면에서 추가 상승 모멘텀 부족. 거래량 감소는 수급 약화 신호. 37,715원 지지 이탈 시 추가 하락, 39,450원 돌파 시 재평가 가능하나 현 시점에서는 비중 축소 또는 관망 권고.<br>
+</div>
+<div class="section-bar">🟡 TIGER 차이나휴머노이드로봇 (487230) 20,000원 | 확신도 4/10</div>
+<p style="margin:8px 0;color:#ccc;font-size:14px;line-height:1.7"><strong>신호:</strong> 중립 | <strong>가격:</strong> 20,000원 | <strong>등락률:</strong> 데이터 미제공</p>
+<p style="margin:8px 0;color:#ccc;font-size:14px;line-height:1.7">→ 20,470원 저항 돌파 실패. 한국은 산업용 로봇 강국이나 휴머노이드는 미중 주도. 테마주 성격 강함.</p>
+<span class="toggle-hint" onclick="event.stopPropagation();toggleDetail('d10')">📋 상세 분석 보기 ▾</span>
+<div class="stock-detail" id="d10">
+<h4>📊 핵심 숫자:</h4>
+<div style="padding:2px 0">• 지지선: 19,950원 (27일 저점)</div>
+<div style="padding:2px 0">• 저항선: 20,470원 (52주 최고가)</div>
+<div style="padding:2px 0">• 5일선 > 20일선 > 60일선 정배열이지만 간격 좁음</div>
+<h4>📰 뉴스:</h4>
+Waymo의 10개 도시 확장 발표로 자율주행 업종 전반 부각. 다만 중국 휴머노이드 로봇 관련 직접 뉴스는 없음.<br>
+<h4>💡 판단:</h4>
+<strong>중요</strong>: 한국은 산업용 로봇 강국이지만 휴머노이드 로봇은 미국(테슬라, 보스턴다이나믹스)과 중국이 주도하는 시장. 이 ETF는 중국 기업에 투자하는 구조로, ①중국 경제 회복 불확실성 ②휴머노이드 상용화 시기 불투명 ③테마주 성격 강해 변동성 큼. 20,470원 돌파 확인 전까지는 소액 분할 매수 또는 관망 권고. 스토리만 있고 실체 없는 단계.<br>
+</div>
+<div class="section-bar">📌 이번 주 액션 플랜</div>
+<div class="action-item"><span class="action-label label-buy">매수</span> <em>메타 매수 대기</em>* — 630달러 지지 확인 시 10% 비중 진입. 661달러 돌파 시 추가 5% 매수.</div>
+<div class="action-item"><span class="action-label label-sell">익절</span> <em>테슬라 비중 축소</em>* — 420달러 반등 시 50% 익절. 394달러 하회 시 전량 손절.</div>
+<div class="action-item"><span class="action-label label-sell">매도</span> <em>현대차우 추가 매수</em>* — 329,000원 돌파 확인 시 10% 추가. 296,000원 이탈 시 손절.</div>
+<div class="action-item"><span class="action-label label-wait">관망</span> <em>TIGER 반도체 Top10 적립 2배</em>* — 메타 AI 칩 수주로 반도체 사이클 상승 국면 진입. 107,800원 돌파 시 일시불 10% 추가.</div>
+<div class="action-item"><span class="action-label label-wait">관망</span> <em>삼성전자·SK하이닉스 관망</em>* — 223,000원(삼성), 1,099,000원(SK하이닉스) 돌파 확인 후 재진입 판단.</div>
+<div class="action-item"><span class="action-label label-wait">관망</span> <em>SOL 조선 Top3플러스 비중 축소</em>* — 37,715원 이탈 시 50% 청산. 경기 후반 섹터로 현 국면 부적합.</div>
+<div class="action-item"><span class="action-label label-keep">유지</span> <em>TIGER 차이나휴머노이드로봇 홀딩</em>* — 20,470원 돌파 전까지 추가 매수 중단. 테마주 성격 강해 비중 5% 이하 유지.</div>
+<div class="dca-box">📅 <strong>적립식 종목 판단:</strong> <strong>정상 유지 + 반도체 ETF 2배 증액</strong></div>
+<div class="action-item"><span class="action-label label-wait">관망</span> <em>근거:</em>*</div>
+<div class="action-item"><span class="action-label label-wait">관망</span> 금·국채 동반 상승은 위험 회피 신호이지만, 미국 소비자 신뢰 지수 개선으로 경기 급락 가능성은 낮음</div>
+<div class="action-item"><span class="action-label label-wait">관망</span> 메타의 AI 인프라 투자 확대는 <strong>구조적 수요</strong>로, 반도체 사이클 상승 초입 판단</div>
+<div class="action-item"><span class="action-label label-sell">매도</span> 한국 증시 약세는 외국인 매도 일시적 현상. 거버넌스 개혁(밸류업) 기대감으로 중장기 재평가 가능성</div>
+<div class="dca-box">- 적립식 DCA는 공포 구간에서 비중 늘리는 전략. 현재는 <strong>혼조장</strong>으로 정상 유지하되, 코스피 92,000원 이탈 시 20% 증액 고려</div>
+<div class="action-item"><span class="action-label label-wait">관망</span> ⚠️ <strong>면책 조항</strong></div>
+<div class="action-item"><span class="action-label label-sell">매도</span> 본 브리핑은 AI가 공개 데이터를 바탕으로 생성한 참고 자료이며, 특정 종목의 매수·매도를 권유하는 것이 아닙니다. 모든 투자 판단과 그에 따른 손익의 책임은 투자자 본인에게 있습니다. 투자 전 반드시 독립적인 분석과 전문가 상담을 권장합니다.</div>
+
+</div>
+<script>
+function toggleDetail(id){var e=document.getElementById(id);if(!e)return;e.classList.toggle('open');var h=e.previousElementSibling;if(h&&h.classList.contains('toggle-hint'))h.textContent=e.classList.contains('open')?'📋 상세 분석 접기 ▴':'📋 상세 분석 보기 ▾';}
+</script>
+</body>
+</html>
