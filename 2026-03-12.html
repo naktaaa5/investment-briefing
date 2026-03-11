@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>투자 브리핑 2026-03-12</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Noto Sans KR',sans-serif; background:#191919; color:#e0e0e0; line-height:1.7; padding:20px; }
+.tab-container { max-width:820px; margin:0 auto; }
+.tabs { display:flex; gap:4px; margin-bottom:0; }
+.tab { padding:12px 28px; background:#2a2a2a; border:none; color:#888; font-size:14px; font-family:'Noto Sans KR',sans-serif; font-weight:500; cursor:pointer; border-radius:8px 8px 0 0; transition:all 0.2s; }
+.tab.active { background:#1e1e1e; color:#fff; }
+.tab:hover:not(.active) { background:#333; color:#bbb; }
+.page { max-width:820px; margin:0 auto; background:#1e1e1e; border-radius:0 8px 12px 12px; padding:48px 56px 56px; display:none; }
+.page.active { display:block; }
+.page-icon { font-size:42px; margin-bottom:8px; }
+.page-title { font-size:28px; font-weight:700; color:#fff; margin-bottom:6px; }
+.page-subtitle { font-size:13px; color:#666; margin-bottom:36px; padding-bottom:20px; border-bottom:1px solid #2a2a2a; }
+.section-bar { display:flex; align-items:center; gap:10px; margin:36px 0 16px; font-size:18px; font-weight:600; color:#fff; }
+.section-bar::after { content:''; flex:1; height:1px; background:#333; }
+.market-table { width:100%; border-collapse:collapse; margin:12px 0 20px; font-size:13.5px; }
+.market-table th { text-align:left; padding:10px 14px; background:#252525; color:#999; font-weight:500; font-size:12px; letter-spacing:0.5px; }
+.market-table td { padding:10px 14px; border-bottom:1px solid #2a2a2a; color:#ccc; }
+.market-table tr:last-child td { border-bottom:none; }
+.up { color:#ef5350; }
+.down { color:#42a5f5; }
+.macro-box { background:rgba(240,192,64,0.05); border:none; padding:20px 24px; border-radius:10px; margin:8px 0; font-size:14px; line-height:1.8; color:#ccc; }
+.macro-box strong { color:#f0c040; }
+.risk-box { background:rgba(239,83,80,0.05); border:none; padding:20px 24px; border-radius:10px; margin:8px 0; font-size:14px; line-height:1.8; color:#ccc; }
+.risk-box strong { color:#ef5350; }
+.dca-box { background:rgba(66,165,245,0.05); border:none; padding:20px 24px; border-radius:10px; margin:8px 0; font-size:14px; line-height:1.8; color:#ccc; }
+.dca-box strong { color:#42a5f5; }
+.beginner-tip { background:rgba(76,175,80,0.05); border:none; border-radius:10px; padding:14px 18px; margin:8px 0; font-size:13px; color:#a5d6a7; line-height:1.7; }
+.beginner-tip::before { content:'💡 초보 팁 | '; font-weight:600; }
+.stock-card { background:#232323; border-radius:10px; padding:16px 20px; margin:10px 0; cursor:pointer; transition:background 0.15s; }
+.stock-card:hover { background:#282828; }
+.stock-header { display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; }
+.stock-left { display:flex; align-items:center; gap:12px; }
+.signal { width:10px; height:10px; border-radius:50%; flex-shrink:0; }
+.signal.buy { background:#4caf50; box-shadow:0 0 8px #4caf5060; }
+.signal.hold { background:#ffc107; box-shadow:0 0 8px #ffc10760; }
+.signal.sell { background:#ef5350; box-shadow:0 0 8px #ef535060; }
+.stock-name { font-weight:600; color:#fff; font-size:15px; }
+.stock-price { font-size:14px; color:#bbb; margin-left:8px; }
+.stock-badge { font-size:12px; padding:3px 10px; border-radius:12px; font-weight:500; }
+.badge-buy { background:#4caf5020; color:#4caf50; }
+.badge-hold { background:#ffc10720; color:#ffc107; }
+.badge-sell { background:#ef535020; color:#ef5350; }
+.stock-meta { margin-top:10px; padding:8px 0; font-size:13px; color:#999; display:flex; gap:16px; flex-wrap:wrap; }
+.stock-meta .meta-label { color:#666; }
+.stock-meta .meta-value { color:#ccc; font-weight:500; }
+.stock-comment { margin-top:8px; padding-left:22px; font-size:13.5px; color:#999; line-height:1.6; }
+.stock-comment::before { content:'→ '; color:#666; }
+.confidence { font-size:12px; color:#777; margin-left:auto; flex-shrink:0; }
+.toggle-hint { display:inline-block; font-size:11px; color:#555; margin:10px 0 0 0; cursor:pointer; padding:4px 10px; background:#1e1e1e; border-radius:4px; }
+.toggle-hint:hover { color:#888; background:#252525; }
+.stock-detail { display:none; margin-top:14px; padding:20px 24px; background:#1e1e1e; border-radius:8px; font-size:13px; color:#aaa; line-height:1.9; }
+.stock-detail.open { display:block; }
+.stock-detail h4 { color:#ddd; font-size:13px; font-weight:600; margin:16px 0 8px; }
+.stock-detail h4:first-child { margin-top:0; }
+.news-item { padding:6px 0 6px 16px; border-left:2px solid #333; margin:6px 0; font-size:12.5px; color:#aaa; line-height:1.6; }
+.action-item { padding:10px 0; border-bottom:1px solid #2a2a2a; font-size:14px; line-height:1.7; color:#ccc; }
+.action-item:last-child { border-bottom:none; }
+.action-label { display:inline-block; font-size:11px; padding:2px 8px; border-radius:4px; font-weight:500; margin-right:8px; vertical-align:middle; }
+.label-buy { background:#4caf5020; color:#4caf50; }
+.label-wait { background:#ffc10720; color:#ffc107; }
+.label-sell { background:#ef535020; color:#ef5350; }
+.label-keep { background:#42a5f520; color:#42a5f5; }
+.disclaimer { margin-top:36px; padding-top:20px; border-top:1px solid #2a2a2a; font-size:12px; color:#555; text-align:center; }
+.cycle-visual { display:flex; align-items:center; justify-content:center; gap:0; margin:20px 0; flex-wrap:wrap; }
+.cycle-phase { padding:12px 20px; font-size:13px; font-weight:500; text-align:center; min-width:120px; color:#666; border:1px solid #333; border-radius:8px; }
+.cycle-phase.active { background:rgba(240,192,64,0.05); border:1px solid rgba(240,192,64,0.25); color:#f0c040; }
+.cycle-arrow { color:#444; font-size:18px; padding:0 4px; }
+.sector-table { width:100%; border-collapse:collapse; margin:12px 0; font-size:13.5px; }
+.sector-table th { text-align:left; padding:10px 14px; background:#252525; color:#999; font-weight:500; font-size:12px; }
+.sector-table td { padding:10px 14px; border-bottom:1px solid #2a2a2a; }
+.sector-strong { color:#4caf50; font-weight:500; }
+.sector-weak { color:#ef5350; font-weight:500; }
+.sector-neutral { color:#999; }
+.idea-card { background:#232323; border-radius:10px; padding:18px 20px; margin:10px 0; }
+.idea-title { font-weight:600; color:#fff; font-size:14px; margin-bottom:8px; }
+.idea-reason { font-size:13px; color:#aaa; line-height:1.7; }
+.idea-tag { display:inline-block; font-size:11px; padding:2px 8px; border-radius:4px; margin-right:6px; margin-bottom:6px; }
+.tag-sector { background:#9c27b020; color:#ce93d8; }
+.tag-timing { background:#ff980020; color:#ffb74d; }
+.term-box { background:rgba(100,181,246,0.05); border:none; border-radius:8px; padding:14px 18px; margin:8px 0; font-size:13px; }
+.term-box .term-word { color:#64b5f6; font-weight:600; }
+.term-box .term-def { color:#999; }
+.etf-contents { background:#232323; border-radius:8px; padding:14px 18px; margin:8px 0; font-size:13px; color:#aaa; line-height:1.7; }
+.etf-contents strong { color:#ccc; }
+@media (max-width:700px) { .page { padding:28px 20px 36px; } .page-title { font-size:22px; } .stock-header { flex-direction:column; align-items:flex-start; } .stock-meta { flex-direction:column; gap:4px; } .cycle-visual { flex-direction:column; gap:4px; } .cycle-arrow { transform:rotate(90deg); } }</style>
+</head>
+<body>
+<div class="page active" style="border-radius:12px;">
+  <div class="page-icon">📊</div>
+  <div class="page-title">3월 12일 (목) 투자 데일리 브리핑</div>
+  <div class="page-subtitle">🏷 태그: 투자 &nbsp;|&nbsp; 자동 생성: 08:30 KST</div>
+  <div class="section-bar">📡 시장 온도계</div>
+<table class="market-table">
+<tr><th>지표</th><th>최근 종가</th><th>등락률</th><th>상태</th></tr>
+<tr><td>KODEX 200</td><td>83,825원</td><td>0.00%</td><td>⚠️ 데이터 이상</td></tr>
+<tr><td>KODEX 미국S&P500</td><td>22,610원</td><td>0.00%</td><td>⚠️ 데이터 이상</td></tr>
+<tr><td>KODEX 미국나스닥100</td><td>24,335원</td><td>0.00%</td><td>⚠️ 데이터 이상</td></tr>
+<tr><td>ACE KRX금현물</td><td>34,020원</td><td>0.00%</td><td>⚠️ 데이터 이상</td></tr>
+<tr><td>TIGER 미국배당다우존스</td><td>14,390원</td><td>0.00%</td><td>⚠️ 데이터 이상</td></tr>
+<tr><td>ACE 미국30년국채액티브</td><td>7,700원</td><td>0.00%</td><td>⚠️ 데이터 이상</td></tr>
+</table>
+<p style="margin:8px 0;color:#ccc;font-size:14px;line-height:1.7"><strong>⚠️ 데이터 품질 경고</strong>: 모든 ETF 등락률이 0%로 표시되고 있어 API 장애로 판단됩니다. 실제 시장은 차트와 뉴스 기반으로 분석했습니다.</p>
+<div class="section-bar">🌐 매크로 핵심 요약</div>
+<div class="section-bar">한줄 요약</div>
+<div class="macro-box">빅테크 AI 투자 7천억달러 확대 선언이 한국 반도체(삼성전자·SK하이닉스) HBM4 수요 폭증 촉매로 작용, 오늘 미국 CPI 발표가 금리 인하 기대와 테크주 방향성 결정할 전환점.</div>
+<div class="section-bar">쉽게 말하면</div>
+<p style="margin:8px 0;color:#ccc;font-size:14px;line-height:1.7">구글이 CEO에게 역대급 보상(1조원)을 주며 AI 자율주행 자회사(웨이모·윙) IPO 준비 신호를 보냈고, 삼성전자가 구글 5대 매출처에 신규 진입하면서 HBM 공급 확대가 본격화됐습니다. 엔비디아 젠슨 황이 "AI 인프라 구축에 7천억달러 투자가 시작되며 수조달러로 확대될 것"이라고 말한 게 삼성·SK하이닉스에게 직격탄입니다. 오늘 밤 미국 CPI가 예상(0.3%)보다 낮으면 금리 인하 기대로 테크주 전체가 반등할 수 있지만, 높으면 다시 조정 압력입니다.</p>
+<div class="section-bar">핵심 경제 지표 변화</div>
+<p style="margin:8px 0;color:#ccc;font-size:14px;line-height:1.7">- <strong>미국 CPI (3/12 발표 예정)</strong>: 전월比 0.3%, 핵심 0.4% 예상 → 0.2%대 나오면 금리 인하 기대 급등, 나스닥 2% 상승 가능</p>
+<p style="margin:8px 0;color:#ccc;font-size:14px;line-height:1.7">- <strong>미국 PPI (3/13 발표 예정)</strong>: 생산자물가 둔화 시 인플레 2차 확인 → 연준 비둘기파 전환 신호</p>
+<p style="margin:8px 0;color:#ccc;font-size:14px;line-height:1.7">- <strong>원달러 환율</strong>: 1,380원대 → CPI 결과에 따라 1,350원(금리 인하 기대) 또는 1,400원(긴축 연장) 분기점</p>
+<p style="margin:8px 0;color:#ccc;font-size:14px;line-height:1.7">- <strong>한미 금리차</strong>: 미국 3.64% vs 한국 3.25% → 0.39%p 역전 상태, CPI 둔화 시 차이 축소로 원화 강세 압력</p>
+<div class="section-bar">내 포트폴리오 영향</div>
+<p style="margin:8px 0;color:#ccc;font-size:14px;line-height:1.7">1. <strong>삼성전자·SK하이닉스</strong>: 구글 AI 모델(Gemini 3.1) 출시 + 삼성 5대 매출처 진입으로 HBM4 수요 폭증 → 단기 기술적 하락세에도 3월 말 실적 기대감 회복 가능성</p>
+<p style="margin:8px 0;color:#ccc;font-size:14px;line-height:1.7">2. <strong>알파벳</strong>: CEO 보상 패키지(웨이모·윙 주식 포함)가 자회사 IPO 준비 신호 → 주가 재평가 촉매, 단 CEO 980만달러 주식 매각은 단기 압력</p>
+<p style="margin:8px 0;color:#ccc;font-size:14px;line-height:1.7">3. <strong>나스닥100/S&P500</strong>: CPI 둔화 시 금리 인하 기대로 테크주 반등, 상승 시 조정 연장 → 오늘 밤 발표가 향후 2주 방향성 결정</p>
+<p style="margin:8px 0;color:#ccc;font-size:14px;line-height:1.7">4. <strong>TIGER 반도체 ETF</strong>: 기술적으로는 매도 신호(확신도 6/10)지만, 삼성·SK하이닉스 HBM 수혜 뉴스가 펀더멘탈 지지선 → 90,945원 지지 확인 후 단기 반등 가능</p>
+<div class="section-bar">⚠️ 오늘의 리스크</div>
+<div class="risk-box"><strong>⚠️ 오늘의 리스크</strong><br><br>1. <em>미국 CPI 상방 서프라이즈</em>*: 0.4% 이상 나오면 금리 인하 기대 붕괴 → 테크주 전체 3~5% 급락, 삼성·하이닉스도 동반 하락<br>2. <em>반도체 기술적 하락세 지속</em>*: 삼성 167,300원·하이닉스 808,000원 지지선 이탈 시 투매 위험 (3/4 장대음봉 이후 회복 미미)<br>3. <em>알파벳 CEO 주식 매각 후폭풍</em>*: 피차이가 980만달러 현금화한 게 추가 매도 신호로 해석될 경우 단기 조정 압력</div>
+<div class="section-bar">📋 내 종목 신호 — 개별주</div>
+<div class="beginner-tip">🟢 매수 = 사기 좋은 타이밍 &nbsp;|&nbsp; 🟡 중립 = 지켜보기 &nbsp;|&nbsp; 🔴 매도 = 파는 게 나을 수 있음 &nbsp;|&nbsp; 확신도는 AI가 얼마나 확신하는지 (10점 만점)</div>
+<div class="section-bar">🟢 알파벳A (GOOGL) $307.50 | 확신도 7/10</div>
+<p style="margin:8px 0;color:#ccc;font-size:14px;line-height:1.7"><strong>신호:</strong> 매수 | <strong>가격:</strong> $307.50 | <strong>등락률:</strong> 데이터 미제공</p>
+<p style="margin:8px 0;color:#ccc;font-size:14px;line-height:1.7">→ CEO 보상에 웨이모·윙 주식 포함(총 3.52억달러)은 자회사 IPO 준비 신호로 주가 재평가 촉매. 삼성전자 HBM 공급 확대로 AI 인프라 투자 가속화 수혜 직격탄.</p>
+<span class="toggle-hint" onclick="event.stopPropagation();toggleDetail('d1')">📋 상세 분석 보기 ▾</span>
+<div class="stock-detail" id="d1">
+<h4>📈 차트:</h4>
+<div style="padding:2px 0">• 최근 5일 횡보, $305.57~$311.42 박스권 등락</div>
+<div style="padding:2px 0">• RSI 47.44로 중립적, 과매도 진입 직전 → 반등 여력 충분</div>
+<div style="padding:2px 0">• 5일 이동평균선이 20일선 근처에서 지지받는 모습 → 하락 추세 아님</div>
+<h4>📊 핵심 숫자:</h4>
+<div style="padding:2px 0">• <strong>지지선</strong>: $305.57 (3/10 저가), $294.08 (52주 최저) → 현재가에서 2% 아래</div>
+<div style="padding:2px 0">• <strong>저항선</strong>: $311.42 (3/11 고가), $349.00 (52주 최고) → 돌파 시 13% 상승 여력</div>
+<div style="padding:2px 0">• <strong>RSI</strong>: 47.44 → 중립, 추가 하락보다 반등 대기 국면</div>
+<div style="padding:2px 0">• <strong>거래량</strong>: 최근 감소 → 매도 압력 약화, 뉴스 촉매 시 급등 가능성</div>
+<h4>📰 뉴스:</h4>
+<div style="padding:2px 0">1. <strong>CEO 보상 패키지 6억9200만달러 승인</strong>: 기본 급여 600만달러 + 성과연동 PSU/GSU 8억400만달러 + 웨이모(2억6000만달러)·윙(9000만달러) 주식 첫 포함. 웨이모·윙 연계는 자회사 IPO 준비 신호로 해석 → 알파벳 기업가치 재평가 촉매(자회사 분할 시 모회사 밸류에이션 10~15% 상승 가능)</div>
+<div style="padding:2px 0">2. <strong>Gemini 3.1 Flash Lite 모델 출시</strong>: 입력토큰당 0.25달러, 응답속도 2.5배↑·출력 45% 향상 → AI 경쟁력 강화, 오픈AI·메타와 격차 축소</div>
+<div style="padding:2px 0">3. <strong>삼성전자 5대 매출처 신규 진입</strong>: 알파벳이 삼성 HBM4·AI 서버 D램 주요 고객으로 부상 → AI 데이터센터 7천억달러 투자 본격화 증거</div>
+<div style="padding:2px 0">4. <strong>CEO 주식 매각</strong>: 피차이가 클래스C 주식 3.25만주(980만달러) 매각 → 단기 압력이나 보상 패키지 총액(6.92억달러) 대비 1.4%에 불과해 상징적 수준</div>
+<h4>⚠️ 리스크:</h4>
+<div style="padding:2px 0;color:#aaa"><span style="color:#ef5350;font-weight:500">1.</span> <strong>CEO 주식 매각 추가 가능성</strong>: 보상 패키지 규모(6.92억달러)가 크다 보니 추가 현금화 시도 시 단기 주가 압력</div>
+<div style="padding:2px 0;color:#aaa"><span style="color:#ef5350;font-weight:500">2.</span> <strong>CPI 상방 서프라이즈</strong>: 오늘 밤 CPI가 0.4% 이상 나오면 테크주 전체 조정 → GOOGL도 $294 지지선까지 4% 하락 가능</div>
+<div style="padding:2px 0;color:#aaa"><span style="color:#ef5350;font-weight:500">3.</span> <strong>웨이모·윙 IPO 지연 리스크</strong>: 자회사 상장이 2027년 이후로 미뤄지면 재평가 촉매 약화</div>
+</div>
+<div class="section-bar">🟡 메타 (META) $648.50 | 확신도 5/10</div>
+<p style="margin:8px 0;color:#ccc;font-size:14px;line-height:1.7"><strong>신호:</strong> 중립 | <strong>가격:</strong> $648.50 | <strong>등락률:</strong> 데이터 미제공</p>
+<p style="margin:8px 0;color:#ccc;font-size:14px;line-height:1.7">→ 기술적으로 $626~$660 박스권 횡보 중. AI 인프라 7천억달러 투자 동참하나 구체적 뉴스 부재로 관망 유지. CPI 결과 따라 방향성 결정.</p>
+<span class="toggle-hint" onclick="event.stopPropagation();toggleDetail('d2')">📋 상세 분석 보기 ▾</span>
+<div class="stock-detail" id="d2">
+<h4>📈 차트:</h4>
+<div style="padding:2px 0">• 최근 5일 횡보, $626.78~$660.30 좁은 박스권</div>
+<div style="padding:2px 0">• RSI 49.94로 완전 중립 → 매수/매도 신호 모두 약함</div>
+<div style="padding:2px 0">• 5일선과 20일선이 엉켜있어 추세 불분명</div>
+<h4>📊 핵심 숫자:</h4>
+<div style="padding:2px 0">• <strong>지지선</strong>: $626.78 (3/9 저가), $600.00 (52주 최저) → 3% 아래</div>
+<div style="padding:2px 0">• <strong>저항선</strong>: $660.30 (3/10 고가), $744.00 (52주 최고) → 돌파 시 14% 상승</div>
+<div style="padding:2px 0">• <strong>RSI</strong>: 49.94 → 중립, 박스권 상단 돌파 전까지 관망</div>
+<div style="padding:2px 0">• <strong>거래량</strong>: 감소 추세 → 방향성 상실, 뉴스 대기 국면</div>
+<h4>📰 뉴스:</h4>
+<div style="padding:2px 0">• 최근 48시간 내 주요 뉴스 없음. AI 인프라 7천억달러 투자 흐름에는 동참하나 구체적 계약·모델 발표는 부재. 빅테크 전체 테마에 편승 중이나 독자적 촉매 부족.</div>
+<h4>⚠️ 리스크:</h4>
+<div style="padding:2px 0;color:#aaa"><span style="color:#ef5350;font-weight:500">1.</span> <strong>박스권 하단 이탈</strong>: $626 지지 실패 시 $600까지 4% 하락 → 손절 기준선 설정 필요</div>
+<div style="padding:2px 0;color:#aaa"><span style="color:#ef5350;font-weight:500">2.</span> <strong>CPI 민감도</strong>: 금리 민감 테크주 특성상 오늘 CPI 결과에 따라 ±5% 변동 가능</div>
+<div style="padding:2px 0;color:#aaa"><span style="color:#ef5350;font-weight:500">3.</span> <strong>독자 촉매 부재</strong>: 알파벳(Gemini 3.1)과 달리 신규 AI 모델 발표 없어 상대적 약세 가능</div>
+</div>
+<div class="section-bar">🟡 테슬라 (TSLA) $400.50 | 확신도 4/10</div>
+<p style="margin:8px 0;color:#ccc;font-size:14px;line-height:1.7"><strong>신호:</strong> 중립 | <strong>가격:</strong> $400.50 | <strong>등락률:</strong> 데이터 미제공</p>
+<p style="margin:8px 0;color:#ccc;font-size:14px;line-height:1.7">→ $381~$416 박스권 횡보, 방향성 없음. AI/자율주행 테마로 알파벳 웨이모 IPO 수혜 가능하나 단기 촉매 부족. 관망 후 $416 돌파 확인 필요.</p>
+<span class="toggle-hint" onclick="event.stopPropagation();toggleDetail('d3')">📋 상세 분석 보기 ▾</span>
+<div class="stock-detail" id="d3">
+<h4>📈 차트:</h4>
+<div style="padding:2px 0">• 최근 5일 횡보, $381.40~$416.38 박스권</div>
+<div style="padding:2px 0">• RSI 48.11로 중립, 과매도 진입 직전</div>
+<div style="padding:2px 0">• 거래량 감소로 매수/매도세 모두 약함</div>
+<h4>📊 핵심 숫자:</h4>
+<div style="padding:2px 0">• <strong>지지선</strong>: $381.40 (3/9 저가, 52주 최저 동일) → 4.7% 아래, 이탈 시 위험</div>
+<div style="padding:2px 0">• <strong>저항선</strong>: $416.38 (3/11 고가), $498.83 (52주 최고) → 돌파 시 24% 상승 여력</div>
+<div style="padding:2px 0">• <strong>RSI</strong>: 48.11 → 중립, $416 돌파 전까지 대기</div>
+<div style="padding:2px 0">• <strong>거래량</strong>: 감소 → 변동성 축소, 뉴스 대기</div>
+<h4>📰 뉴스:</h4>
+<div style="padding:2px 0">• 최근 48시간 내 주요 뉴스 없음. 알파벳 웨이모(자율주행) IPO 준비 뉴스가 간접 수혜 요인이나, 테슬라 독자 촉매(FSD 업데이트, 실적 발표 등) 부재. AI 로봇 테마는 중국(휴머노이드)이 주도하고 미국은 산업용에 집중해 테슬라 옵티머스 수혜 제한적.</div>
+<h4>⚠️ 리스크:</h4>
+<div style="padding:2px 0;color:#aaa"><span style="color:#ef5350;font-weight:500">1.</span> <strong>지지선 이탈</strong>: $381.40 깨지면 52주 최저 붕괴 → 추가 10% 하락 가능</div>
+<div style="padding:2px 0;color:#aaa"><span style="color:#ef5350;font-weight:500">2.</span> <strong>자율주행 경쟁 심화</strong>: 웨이모 IPO가 성공하면 테슬라 FSD 밸류에이션 상대적 하락 압력</div>
+<div style="padding:2px 0;color:#aaa"><span style="color:#ef5350;font-weight:500">3.</span> <strong>CPI 금리 민감도</strong>: EV 고가 소비재 특성상 금리 상승 시 수요 타격</div>
+</div>
+<div class="section-bar">🔴 네이버 (035420) 218,500원 | 확신도 4/10</div>
+<p style="margin:8px 0;color:#ccc;font-size:14px;line-height:1.7"><strong>신호:</strong> 중립 | <strong>가격:</strong> 218,500원 | <strong>등락률:</strong> 데이터 미제공</p>
+<p style="margin:8px 0;color:#ccc;font-size:14px;line-height:1.7">→ 기술적으로 하락 추세(확신도 4/10) + 207,000원 지지선 위태. 최근 뉴스 없어 독자 촉매 부족. AI 데이터센터 투자 테마는 잠재력 있으나 단기 관망.</p>
+<span class="toggle-hint" onclick="event.stopPropagation();toggleDetail('d4')">📋 상세 분석 보기 ▾</span>
+<div class="stock-detail" id="d4">
+<h4>📈 차트:</h4>
+<div style="padding:2px 0">• 최근 5일 하락 후 2일 상승 시도, 뚜렷한 반전 패턴 없음</div>
+<div style="padding:2px 0">• 5일선이 20일선 아래 위치 가능성 높음 → 하락 추세 유지</div>
+<div style="padding:2px 0">• 거래량 감소로 매수세 약화</div>
+<h4>📊 핵심 숫자:</h4>
+<div style="padding:2px 0">• <strong>지지선</strong>: 207,000원 (52주 최저), 218,000원 (3/10 저가) → 현재가와 거의 동일, 위험 구간</div>
+<div style="padding:2px 0">• <strong>저항선</strong>: 231,000원 (3/4 고가), 236,000원 (3/3 종가) → 돌파 시 6% 상승</div>
+<div style="padding:2px 0">• <strong>거래량</strong>: 감소 → 상승 동력 부족</div>
+<h4>📰 뉴스:</h4>
+<div style="padding:2px 0">• 최근 48시간 내 주요 뉴스 없음. 알파벳 AI 투자 확대(7천억달러)가 한국 데이터센터 수요 증가로 이어질 가능성 있으나, 네이버 독자 발표 없어 수혜 불확실. 국내 AI 검색·LLM 경쟁에서 하이퍼클로바X 활용도 높으나 매출 기여는 미미.</div>
+<h4>⚠️ 리스크:</h4>
+<div style="padding:2px 0;color:#aaa"><span style="color:#ef5350;font-weight:500">1.</span> <strong>지지선 붕괴</strong>: 207,000원 이탈 시 52주 최저 갱신 → 추가 5~10% 하락 가능</div>
+<div style="padding:2px 0;color:#aaa"><span style="color:#ef5350;font-weight:500">2.</span> <strong>독자 촉매 부족</strong>: 빅테크 AI 테마에 소외, 국내 규제(네이버페이·검색 독점 논란) 리스크</div>
+<div style="padding:2px 0;color:#aaa"><span style="color:#ef5350;font-weight:500">3.</span> <strong>거래량 감소</strong>: 시장 관심도 하락 → 반등 시에도 탄력 제한</div>
+</div>
+<div class="section-bar">🟡 현대차우 (005385) 267,000원 | 확신도 5/10</div>
+<p style="margin:8px 0;color:#ccc;font-size:14px;line-height:1.7"><strong>신호:</strong> 중립 | <strong>가격:</strong> 267,000원 | <strong>등락률:</strong> 데이터 미제공</p>
+<p style="margin:8px 0;color:#ccc;font-size:14px;line-height:1.7">→ 급등 후 횡보(262,000~279,500원), 변동성 큼. 최근 뉴스 없어 단기 방향성 불확실. 262,000원 지지 유지 시 재상승 가능성, 이탈 시 조정.</p>
+<span class="toggle-hint" onclick="event.stopPropagation();toggleDetail('d5')">📋 상세 분석 보기 ▾</span>
+<div class="stock-detail" id="d5">
+<h4>📈 차트:</h4>
+<div style="padding:2px 0">• 최근 5일 횡보, 급등 후 이익 실현 압력</div>
+<div style="padding:2px 0">• 5일선이 20일선 위에 있을 가능성 → 상승 추세 유지 여부 불확실</div>
+<div style="padding:2px 0">• 거래량 급감 → 상승 동력 약화</div>
+<h4>📊 핵심 숫자:</h4>
+<div style="padding:2px 0">• <strong>지지선</strong>: 262,000원 (3/11 저가), 235,000원 (52주 최저) → 1.9% 아래</div>
+<div style="padding:2px 0">• <strong>저항선</strong>: 279,500원 (3/4 고가), 329,000원 (52주 최고) → 돌파 시 23% 상승</div>
+<div style="padding:2px 0">• <strong>거래량</strong>: 급감 → 횡보 연장 가능성</div>
+<h4>📰 뉴스:</h4>
+<div style="padding:2px 0">• 최근 48시간 내 주요 뉴스 없음. 알파벳 웨이모 IPO 준비가 자율주행 부품 협력사에게 간접 수혜 가능하나, 현대차 독자 계약 뉴스 부재. 미국 CPI에 따라 자동차 소비 심리 변동 가능(금리 인하 시 수요 증가).</div>
+<h4>⚠️ 리스크:</h4>
+<div style="padding:2px 0;color:#aaa"><span style="color:#ef5350;font-weight:500">1.</span> <strong>지지선 이탈</strong>: 262,000원 깨지면 235,000원까지 11% 하락 → 손절 기준</div>
+<div style="padding:2px 0;color:#aaa"><span style="color:#ef5350;font-weight:500">2.</span> <strong>거래량 감소</strong>: 급등 후 관심도 하락 → 재상승 탄력 제한</div>
+<div style="padding:2px 0;color:#aaa"><span style="color:#ef5350;font-weight:500">3.</span> <strong>CPI 민감도</strong>: 자동차는 금리 민감 소비재 → 금리 상승 시 수요 타격</div>
+</div>
+<div class="section-bar">🔴 삼성전자 (005930) 178,000원 | 확신도 6/10</div>
+<p style="margin:8px 0;color:#ccc;font-size:14px;line-height:1.7"><strong>신호:</strong> 매도 (기술적) / 매수 대기 (펀더멘탈) | <strong>가격:</strong> 178,000원 | <strong>등락률:</strong> 데이터 미제공</p>
+<p style="margin:8px 0;color:#ccc;font-size:14px;line-height:1.7">→ 기술적으로 하락 추세(3/4 장대음봉 후 회복 미미)지만, 구글 5대 매출처 진입+HBM4 수요 폭증이 3월 말 반등 촉매. 167,300원 지지 확인 후 분할 매수.</p>
+<span class="toggle-hint" onclick="event.stopPropagation();toggleDetail('d6')">📋 상세 분석 보기 ▾</span>
+<div class="stock-detail" id="d6">
+<h4>📈 차트:</h4>
+<div style="padding:2px 0">• 최근 5일 하락, 3/4 장대음봉 이후 반등 실패</div>
+<div style="padding:2px 0">• 5일선이 20일선 하향 돌파 가능성 높음 → 하락 추세 전환</div>
+<div style="padding:2px 0">• 3/4 거래량 급증 → 하락 추세 강화 신호</div>
+<h4>📊 핵심 숫자:</h4>
+<div style="padding:2px 0">• <strong>지지선</strong>: 167,300원 (3/9 저가), 149,200원 (52주 최저) → 6% 아래</div>
+<div style="padding:2px 0">• <strong>저항선</strong>: 191,600원 (3/5 종가), 223,000원 (52주 최고) → 돌파 시 25% 상승</div>
+<div style="padding:2px 0">• <strong>거래량</strong>: 3/4 폭증 후 감소 → 하락 압력 완화되나 매수세 약함</div>
+<h4>📰 뉴스:</h4>
+<div style="padding:2px 0">1. <strong>구글 알파벳 5대 매출처 신규 진입</strong>: 2025년 기준 주요 매출처 재편, 알파벳 포함(버라이즌 제외)으로 전체 매출비중 1%p 상승. HBM/AI 서버 D램 공급 확대, 구글 AI 데이터센터 협력 본격화 → <strong>매출비중 14% 돌파 시 주가 10% 상승 잠재력</strong></div>
+<div style="padding:2px 0">2. <strong>AI 인프라 7천억달러 투자 수혜</strong>: 엔비디아 젠슨 황 "AI 구축 7천억달러 시작, 수조달러로 확대" 발언 연계, HBM4 수요 폭증 → SK하이닉스 동반 랠리 가능성</div>
+<div style="padding:2px 0">3. <strong>HBM4 공급 경쟁력</strong>: 삼성이 HBM3E에서 SK하이닉스에 밀렸으나, HBM4는 양사 동등 경쟁 → 구글·메타 등 빅테크 공급 확대로 점유율 회복 기회</div>
+<h4>⚠️ 리스크:</h4>
+<div style="padding:2px 0;color:#aaa"><span style="color:#ef5350;font-weight:500">1.</span> <strong>지지선 붕괴</strong>: 167,300원 이탈 시 149,200원까지 11% 추가 하락 → 투매 위험</div>
+<div style="padding:2px 0;color:#aaa"><span style="color:#ef5350;font-weight:500">2.</span> <strong>CPI 상방 서프라이즈</strong>: 금리 인하 기대 붕괴 시 테크주 전체 조정 → 삼성도 3~5% 하락</div>
+<div style="padding:2px 0;color:#aaa"><span style="color:#ef5350;font-weight:500">3.</span> <strong>HBM 실적 지연</strong>: 구글 공급 확대가 2Q26 이후 본격화될 경우 단기 주가 반등 제한</div>
+<strong>판단</strong>: 기술적으로는 매도 신호지만, 펀더멘탈(구글 매출처 진입·HBM4 수요)이 3월 말 반등 촉매. <strong>167,300원 지지 확인 후 30% 비중 분할 매수, 191,600원 돌파 시 추가 30% 매수 전략</strong>.<br>
+</div>
+<div class="section-bar">🔴 SK하이닉스 (000660) 955,000원 | 확신도 7/10</div>
+<p style="margin:8px 0;color:#ccc;font-size:14px;line-height:1.7"><strong>신호:</strong> 매도 (기술적) / 매수 대기 (펀더멘탈) | <strong>가격:</strong> 955,000원 | <strong>등락률:</strong> 데이터 미제공</p>
+<p style="margin:8px 0;color:#ccc;font-size:14px;line-height:1.7">→ 기술적으로 하락 압력(3/4 장대음봉+거래량 폭증)이나, HBM4 수요 폭증+AI 7천억달러 투자가 구조적 상승 동력. 808,000원 지지 확인 후 공격 매수.</p>
+<span class="toggle-hint" onclick="event.stopPropagation();toggleDetail('d7')">📋 상세 분석 보기 ▾</span>
+<div class="stock-detail" id="d7">
+<h4>📈 차트:</h4>
+<div style="padding:2px 0">• 최근 5일 하락, 3/4 장대음봉 발생</div>
+<div style="padding:2px 0">• 5일선이 20일선 하향 돌파 가능성 높음 → 하락 추세 전환</div>
+<div style="padding:2px 0">• 3/4 거래량 폭발 → 하락 추세 신뢰도 높음</div>
+<h4>📊 핵심 숫자:</h4>
+<div style="padding:2px 0">• <strong>지지선</strong>: 808,000원 (3/9 저가), 733,000원 (52주 최저) → 15% 아래</div>
+<div style="padding:2px 0">• <strong>저항선</strong>: 955,000원 (현재가 부근), 1,099,000원 (52주 최고) → 돌파 시 15% 상승</div>
+<div style="padding:2px 0">• <strong>거래량</strong>: 3/4 폭증 → 하락 추세 강화, 이후 감소로 압력 완화</div>
+<h4>📰 뉴스:</h4>
+<div style="padding:2px 0">1. <strong>AI 인프라 7천억달러 투자 직격탄</strong>: 엔비디아·구글·메타 등 빅테크 AI 데이터센터 투자 확대 → HBM4 수요 폭증, SK하이닉스는 HBM3E 시장 점유율 80% 유지 중</div>
+<div style="padding:2px 0">2. <strong>삼성전자와 동반 수혜</strong>: 구글이 삼성 5대 매출처 진입하며 HBM 공급 경쟁 심화 → 양사 모두 수혜, 특히 SK하이닉스는 기술적 우위 유지</div>
+<div style="padding:2px 0">3. <strong>"증설 없는 마진 사이클" 진입</strong>: 반도체 업황이 증설 없이 가동률 상승으로 마진 개선되는 국면 → 참여 기업 적어 단합적 상승 가능성</div>
+<h4>⚠️ 리스크:</h4>
+<div style="padding:2px 0;color:#aaa"><span style="color:#ef5350;font-weight:500">1.</span> <strong>지지선 붕괴</strong>: 808,000원 이탈 시 733,000원까지 9% 추가 하락 → 투매 위험</div>
+<div style="padding:2px 0;color:#aaa"><span style="color:#ef5350;font-weight:500">2.</span> <strong>CPI 상방 서프라이즈</strong>: 금리 인하 기대 붕괴 시 테크주 전체 조정 → SK하이닉스도 10% 하락 가능</div>
+<div style="padding:2px 0;color:#aaa"><span style="color:#ef5350;font-weight:500">3.</span> <strong>중국 디플레 지속</strong>: 리플레이션(중국 디플레 탈출) 지연 시 반도체 수요 회복 둔화</div>
+<strong>판단</strong>: 기술적으로는 매도 신호지만, 펀더멘탈(HBM4 독점·AI 투자)이 압도적. <strong>808,000원 지지 확인 후 40% 비중 공격 매수, 955,000원 돌파 시 추가 20% 매수 전략</strong>. SK하이닉스는 "증설 없는 마진 사이클"의 핵심 수혜주.<br>
+</div>
+<div class="section-bar">📋 내 종목 신호 — 테마 ETF</div>
+<div class="section-bar">🟡 TIGER 반도체 Top10 (091160) 98,500원 | 확신도 6/10</div>
+<p style="margin:8px 0;color:#ccc;font-size:14px;line-height:1.7"><strong>신호:</strong> 매도 (기술적) / 매수 대기 (펀더멘탈) | <strong>가격:</strong> 98,500원 | <strong>등락률:</strong> 데이터 미제공</p>
+<p style="margin:8px 0;color:#ccc;font-size:14px;line-height:1.7">→ 기술적으로 하락 추세(3/4 급락 후 회복 미미)지만, 삼성·SK하이닉스 HBM4 수요 폭증이 3월 말 반등 촉매. 90,945원 지지 확인 후 분할 매수.</p>
+<span class="toggle-hint" onclick="event.stopPropagation();toggleDetail('d8')">📋 상세 분석 보기 ▾</span>
+<div class="stock-detail" id="d8">
+<h4>📊 핵심 숫자:</h4>
+<div style="padding:2px 0">• <strong>지지선</strong>: 90,945원 (3/9 저가), 72,100원 (52주 최저) → 7.7% 아래</div>
+<div style="padding:2px 0">• <strong>저항선</strong>: 102,335원 (3/6 종가), 107,800원 (52주 최고) → 돌파 시 9% 상승</div>
+<div style="padding:2px 0">• <strong>구성 종목</strong>: 삼성전자·SK하이닉스 비중 높음 → 두</div>
+</div>
+
+</div>
+<script>
+function toggleDetail(id){var e=document.getElementById(id);if(!e)return;e.classList.toggle('open');var h=e.previousElementSibling;if(h&&h.classList.contains('toggle-hint'))h.textContent=e.classList.contains('open')?'📋 상세 분석 접기 ▴':'📋 상세 분석 보기 ▾';}
+</script>
+</body>
+</html>
